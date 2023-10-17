@@ -22,28 +22,27 @@ class _TransactionPageState extends State<TransactionPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: const Text('Hive Expense Tracker'),
-      centerTitle: true,
-    ),
-    body: ValueListenableBuilder<Box<Transaction>>(
-      valueListenable: Boxes.getTransactions().listenable(),
-      builder: (context, box, _) {
-        final transactions = box.values.toList().cast<Transaction>();
-
-        return buildContent(transactions);
-      },
-    ),
-    floatingActionButton: FloatingActionButton(
-      child:const Icon(Icons.add),
-      onPressed: () => showDialog(
-        context: context,
-        builder: (context) => TransactionDialog(
-          onClickedDone: addTransaction,
+        appBar: AppBar(
+          title: const Text('Hive Expense Tracker'),
+          centerTitle: true,
         ),
-      ),
-    ),
-  );
+        body: ValueListenableBuilder<Box<Transaction>>(
+          valueListenable: Boxes.getTransactions().listenable(),
+          builder: (context, box, _) {
+            final transactions = box.values.toList().cast<Transaction>();
+            return buildContent(transactions);
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => TransactionDialog(
+              onClickedDone: addTransaction,
+            ),
+          ),
+        ),
+      );
 
   Widget buildContent(List<Transaction> transactions) {
     if (transactions.isEmpty) {
@@ -56,7 +55,7 @@ class _TransactionPageState extends State<TransactionPage> {
     } else {
       final netExpense = transactions.fold<double>(
         0,
-            (previousValue, transaction) => transaction.isExpense
+        (previousValue, transaction) => transaction.isExpense
             ? previousValue - transaction.amount
             : previousValue + transaction.amount,
       );
@@ -65,7 +64,7 @@ class _TransactionPageState extends State<TransactionPage> {
 
       return Column(
         children: [
-        const  SizedBox(height: 24),
+          const SizedBox(height: 24),
           Text(
             'Net Expense: $newExpenseString',
             style: TextStyle(
@@ -74,10 +73,10 @@ class _TransactionPageState extends State<TransactionPage> {
               color: color,
             ),
           ),
-          const  SizedBox(height: 24),
+          const SizedBox(height: 24),
           Expanded(
             child: ListView.builder(
-              padding:const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               itemCount: transactions.length,
               itemBuilder: (BuildContext context, int index) {
                 final transaction = transactions[index];
@@ -92,9 +91,9 @@ class _TransactionPageState extends State<TransactionPage> {
   }
 
   Widget buildTransaction(
-      BuildContext context,
-      Transaction transaction,
-      ) {
+    BuildContext context,
+    Transaction transaction,
+  ) {
     final color = transaction.isExpense ? Colors.red : Colors.green;
     final date = DateFormat.yMMMd().format(transaction.createdDate);
     final amount = '\$' + transaction.amount.toStringAsFixed(2);
@@ -102,7 +101,7 @@ class _TransactionPageState extends State<TransactionPage> {
     return Card(
       color: Colors.white,
       child: ExpansionTile(
-        tilePadding:const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        tilePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         title: Text(
           transaction.name,
           maxLines: 2,
@@ -122,31 +121,31 @@ class _TransactionPageState extends State<TransactionPage> {
   }
 
   Widget buildButtons(BuildContext context, Transaction transaction) => Row(
-    children: [
-      Expanded(
-        child: TextButton.icon(
-          label:const Text('Edit'),
-          icon: const Icon(Icons.edit),
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => TransactionDialog(
-                transaction: transaction,
-                onClickedDone: (name, amount, isExpense) =>
-                    editTransaction(transaction, name, amount, isExpense),
+        children: [
+          Expanded(
+            child: TextButton.icon(
+              label: const Text('Edit'),
+              icon: const Icon(Icons.edit),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TransactionDialog(
+                    transaction: transaction,
+                    onClickedDone: (name, amount, isExpense) =>
+                        editTransaction(transaction, name, amount, isExpense),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
-      Expanded(
-        child: TextButton.icon(
-          label:const  Text('Delete'),
-          icon:const  Icon(Icons.delete),
-          onPressed: () => deleteTransaction(transaction),
-        ),
-      )
-    ],
-  );
+          Expanded(
+            child: TextButton.icon(
+              label: const Text('Delete'),
+              icon: const Icon(Icons.delete),
+              onPressed: () => deleteTransaction(transaction),
+            ),
+          )
+        ],
+      );
 
   Future addTransaction(String name, double amount, bool isExpense) async {
     final transaction = Transaction()
@@ -166,11 +165,11 @@ class _TransactionPageState extends State<TransactionPage> {
   }
 
   void editTransaction(
-      Transaction transaction,
-      String name,
-      double amount,
-      bool isExpense,
-      ) {
+    Transaction transaction,
+    String name,
+    double amount,
+    bool isExpense,
+  ) {
     transaction.name = name;
     transaction.amount = amount;
     transaction.isExpense = isExpense;

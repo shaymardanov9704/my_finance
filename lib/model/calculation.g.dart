@@ -8,7 +8,7 @@ part of 'calculation.dart';
 
 class CalculationAdapter extends TypeAdapter<Calculation> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   Calculation read(BinaryReader reader) {

@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part 'calculation.g.dart';
 
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Calculation extends HiveObject{
 
   @HiveField(0)

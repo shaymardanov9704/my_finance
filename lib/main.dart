@@ -9,13 +9,14 @@ Future main() async {
 
   await Hive.initFlutter();
 
+
   Hive.registerAdapter(TransactionAdapter());
   await Hive.openBox<Transaction>('transactions');
 
   Hive.registerAdapter(CalculationAdapter());
   await Hive.openBox<Calculation>('calculation');
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

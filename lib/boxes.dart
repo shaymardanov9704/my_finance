@@ -5,6 +5,6 @@ class Boxes {
   static Box<Transaction> getTransactions() =>
       Hive.box<Transaction>('transactions');
 
-  static Box<Transaction> getCalculation() =>
+  static Box<Transaction> getCalculations() =>
       Hive.box<Transaction>('calculation');
 }
