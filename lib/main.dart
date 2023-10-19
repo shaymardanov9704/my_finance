@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/model/calculation.dart';
+import 'package:my_finance/model/debt.dart';
 import 'package:my_finance/model/transaction.dart';
+import 'package:my_finance/pages/expenses/data/models/expense.dart';
 import 'package:my_finance/pages/skeleton.dart';
-import 'package:my_finance/pages/expenses_page.dart';
+import 'package:my_finance/pages/expenses/presentation/pages/expenses_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,12 @@ Future main() async {
 
   Hive.registerAdapter(CalculationAdapter());
   await Hive.openBox<Calculation>('calculation');
+
+  Hive.registerAdapter(ExpenseAdapter());
+  await Hive.openBox<Expense>('expenses');
+
+  Hive.registerAdapter(DebtAdapter());
+  await Hive.openBox<Debt>('debts');
 
   runApp(const MyApp());
 }

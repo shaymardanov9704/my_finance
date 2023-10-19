@@ -1,23 +1,23 @@
 import 'package:hive/hive.dart';
 
-part 'calculation.g.dart';
+part 'expense.g.dart';
 
-@HiveType(typeId: 1)
-class Calculation extends HiveObject {
+@HiveType(typeId: 2)
+class Expense extends HiveObject {
   @HiveField(0)
   late String name;
 
   @HiveField(1)
-  late DateTime createdDate;
+  late int amount;
 
   @HiveField(2)
-  late bool isProfit = true;
+  late bool refundable;
 
   @HiveField(3)
-  late double amount;
+  late DateTime date;
 
   @HiveField(4)
-  late ExpenseType expenseType;
+  late String type;
 }
 
 enum ExpenseType {
@@ -31,4 +31,3 @@ enum ExpenseType {
   other,
   family
 }
-//profit loss

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance/pages/debts_page.dart';
-import 'package:my_finance/pages/profile_page.dart';
-import 'package:my_finance/pages/expenses_page.dart';
+import 'package:my_finance/pages/debts/presentation/pages/debts_page.dart';
+import 'package:my_finance/pages/profile/profile_page.dart';
+import 'package:my_finance/pages/expenses/presentation/pages/expenses_page.dart';
 
 class Skeleton extends StatefulWidget {
   const Skeleton({Key? key}) : super(key: key);
