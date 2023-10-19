@@ -1,36 +1,102 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'package:intl/intl.dart';
 import 'package:my_finance/boxes.dart';
 import 'package:my_finance/model/transaction.dart';
 import 'package:my_finance/widgets/transaction_dialog.dart';
 
-class TransactionPage extends StatefulWidget {
+class ExpensesPage extends StatefulWidget {
+  const ExpensesPage({super.key});
+
   @override
-  _TransactionPageState createState() => _TransactionPageState();
+  State<ExpensesPage> createState() => _ExpensesPageState();
 }
 
-class _TransactionPageState extends State<TransactionPage> {
+class _ExpensesPageState extends State<ExpensesPage> {
   @override
   void dispose() {
     Hive.close();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Hive Expense Tracker'),
+          title: const Text('Expenses Page'),
           centerTitle: true,
         ),
         body: ValueListenableBuilder<Box<Transaction>>(
           valueListenable: Boxes.getTransactions().listenable(),
           builder: (context, box, _) {
             final transactions = box.values.toList().cast<Transaction>();
-            return buildContent(transactions);
+            if (transactions.isEmpty) {
+              return const Center(
+                child: Text(
+                  'No expenses yet!',
+                  style: TextStyle(fontSize: 24),
+                ),
+              );
+            } else {
+              final netExpense = transactions.fold<double>(
+                0,
+                (previousValue, transaction) => transaction.isExpense
+                    ? previousValue - transaction.amount
+                    : previousValue + transaction.amount,
+              );
+              final newExpenseString = '\$${netExpense.toStringAsFixed(2)}';
+              final color = netExpense > 0 ? Colors.green : Colors.red;
+
+              return Column(
+                children: [
+                  const SizedBox(height: 24),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.5),
+                        borderRadius: BorderRadius.circular(16),
+                        gradient: const LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black,
+                            Colors.black,
+                            Colors.black,
+                            Colors.blue,
+                          ],
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.red,
+                            offset: Offset(1, 1),
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                          )
+                        ]),
+                    child: Text(
+                      'Net Expense: \n$newExpenseString',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: transactions.length,
+                      itemBuilder: (_, index) {
+                        return buildTransaction(context, transactions[index]);
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }
           },
         ),
         floatingActionButton: FloatingActionButton(
@@ -44,59 +110,13 @@ class _TransactionPageState extends State<TransactionPage> {
         ),
       );
 
-  Widget buildContent(List<Transaction> transactions) {
-    if (transactions.isEmpty) {
-      return const Center(
-        child: Text(
-          'No expenses yet!',
-          style: TextStyle(fontSize: 24),
-        ),
-      );
-    } else {
-      final netExpense = transactions.fold<double>(
-        0,
-        (previousValue, transaction) => transaction.isExpense
-            ? previousValue - transaction.amount
-            : previousValue + transaction.amount,
-      );
-      final newExpenseString = '\$${netExpense.toStringAsFixed(2)}';
-      final color = netExpense > 0 ? Colors.green : Colors.red;
-
-      return Column(
-        children: [
-          const SizedBox(height: 24),
-          Text(
-            'Net Expense: $newExpenseString',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: color,
-            ),
-          ),
-          const SizedBox(height: 24),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: transactions.length,
-              itemBuilder: (BuildContext context, int index) {
-                final transaction = transactions[index];
-
-                return buildTransaction(context, transaction);
-              },
-            ),
-          ),
-        ],
-      );
-    }
-  }
-
   Widget buildTransaction(
     BuildContext context,
     Transaction transaction,
   ) {
     final color = transaction.isExpense ? Colors.red : Colors.green;
     final date = DateFormat.yMMMd().format(transaction.createdDate);
-    final amount = '\$' + transaction.amount.toStringAsFixed(2);
+    final amount = '\$${transaction.amount.toStringAsFixed(2)}';
 
     return Card(
       color: Colors.white,
@@ -156,12 +176,6 @@ class _TransactionPageState extends State<TransactionPage> {
 
     final box = Boxes.getTransactions();
     box.add(transaction);
-    //box.put('mykey', transaction);
-
-    // final mybox = Boxes.getTransactions();
-    // final myTransaction = mybox.get('key');
-    // mybox.values;
-    // mybox.keys;
   }
 
   void editTransaction(

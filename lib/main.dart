@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/model/calculation.dart';
 import 'package:my_finance/model/transaction.dart';
-import 'package:my_finance/pages/transaction_page.dart';
+import 'package:my_finance/pages/skeleton.dart';
+import 'package:my_finance/pages/expenses_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: TransactionPage(),
+      home: const Skeleton(),
     );
   }
 }
