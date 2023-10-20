@@ -116,11 +116,12 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               ),
               const SizedBox(height: 8),
               CheckboxListTile(
-                  value: refundable,
-                  title: const Text('Refundable'),
-                  onChanged: (_) {
-                    setState(() => refundable = !refundable);
-                  })
+                value: refundable,
+                title: const Text('Refundable'),
+                onChanged: (_) {
+                  setState(() => refundable = !refundable);
+                },
+              ),
             ],
           ),
         ),

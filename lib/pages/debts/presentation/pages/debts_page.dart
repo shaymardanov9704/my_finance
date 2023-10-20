@@ -5,6 +5,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance/boxes.dart';
 import 'package:my_finance/model/transaction.dart';
+import 'package:my_finance/pages/debts/data/models/debt.dart';
+import 'package:my_finance/pages/debts/data/repository/debts_box.dart';
+import 'package:my_finance/pages/debts/presentation/dialogs/debt_dialog.dart';
 import 'package:my_finance/widgets/transaction_dialog.dart';
 
 class DebtsPage extends StatefulWidget {
@@ -18,7 +21,6 @@ class _DebtsPageState extends State<DebtsPage> {
   @override
   void dispose() {
     Hive.close();
-
     super.dispose();
   }
 
@@ -81,7 +83,7 @@ class _DebtsPageState extends State<DebtsPage> {
           child: const Icon(Icons.add),
           onPressed: () => showDialog(
             context: context,
-            builder: (context) => TransactionDialog(
+            builder: (context) => DebtDialog(
               onClickedDone: addTransaction,
             ),
           ),
@@ -92,9 +94,9 @@ class _DebtsPageState extends State<DebtsPage> {
     BuildContext context,
     Transaction transaction,
   ) {
-    final color = transaction.isExpense ? Colors.red : Colors.green;
-    final date = DateFormat.yMMMd().format(transaction.createdDate);
-    final amount = '\$' + transaction.amount.toStringAsFixed(2);
+      final color = transaction.isExpense ? Colors.red : Colors.green;
+      final date = DateFormat.yMMMd().format(transaction.createdDate);
+      final amount = '\$' + transaction.amount.toStringAsFixed(2);
 
     return Card(
       color: Colors.white,
@@ -145,15 +147,15 @@ class _DebtsPageState extends State<DebtsPage> {
         ],
       );
 
-  Future addTransaction(String name, double amount, bool isExpense) async {
-    final transaction = Transaction()
-      ..name = name
-      ..createdDate = DateTime.now()
+  Future addTransaction(String name, int amount, bool isExpense) async {
+    final debt = Debt()
+      ..borrowerName = name
+      ..date = DateTime.now()
       ..amount = amount
-      ..isExpense = isExpense;
+      ..isReturn = isExpense;
 
-    final box = Boxes.getTransactions();
-    box.add(transaction);
+    final box = DebtsBox.getDebts();
+    box.add(debt);
   }
 
   void editTransaction(
