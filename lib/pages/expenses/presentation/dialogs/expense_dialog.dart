@@ -4,12 +4,8 @@ import 'package:my_finance/pages/expenses/data/models/expense.dart';
 
 class ExpenseDialog extends StatefulWidget {
   final Expense? expense;
-  final Function(
-    String name,
-    int amount,
-    bool isExpense,
-    ExpenseType type,
-  ) onClickedDone;
+  final Function(String name, int amount, bool refundable, String type)
+      onClickedDone;
 
   const ExpenseDialog({
     Key? key,
@@ -25,8 +21,8 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final amountController = TextEditingController();
-
-  bool isExpense = true;
+  String type = ExpenseType.other.name;
+  bool refundable = false;
 
   @override
   void initState() {
@@ -35,7 +31,8 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
       final expense = widget.expense!;
       nameController.text = expense.name;
       amountController.text = expense.amount.toString();
-      isExpense = expense.refundable;
+      refundable = expense.refundable;
+      type = expense.type;
     }
   }
 
@@ -49,9 +46,11 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
   @override
   Widget build(BuildContext context) {
     final isEditing = widget.expense != null;
-    final title = isEditing ? 'Edit Transaction' : 'Add Transaction';
     return AlertDialog(
-      title: Text(title),
+      title: Text(
+        isEditing ? 'Edit Transaction' : 'Add Transaction',
+        textAlign: TextAlign.center,
+      ),
       scrollable: true,
       content: Form(
         key: formKey,
@@ -62,9 +61,9 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               const SizedBox(height: 8),
               TextFormField(
                 controller: nameController,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16)
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   hintText: 'Enter Name',
                 ),
@@ -73,9 +72,9 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16)
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   hintText: 'Enter Amount',
                 ),
@@ -86,44 +85,64 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
                         : null,
                 controller: amountController,
               ),
-              const SizedBox(height: 8),
-              Column(
-                children: [
-                  RadioListTile<bool>(
-                    title: const Text('Expense'),
-                    value: true,
-                    groupValue: isExpense,
-                    onChanged: (value) => setState(() => isExpense = value!),
-                  ),
-                  RadioListTile<bool>(
-                    title: const Text('Income'),
-                    value: false,
-                    groupValue: isExpense,
-                    onChanged: (value) => setState(() => isExpense = value!),
-                  ),
-                ],
+              const SizedBox(height: 16),
+              SizedBox(
+                width: 400,
+                height: 34,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: ExpenseType.values.length,
+                  itemBuilder: (_, i) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 1),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: type == ExpenseType.values[i].name
+                              ? Colors.lightGreen
+                              : Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                        ),
+                        onPressed: () => setState(
+                          () => type = ExpenseType.values[i].name,
+                        ),
+                        child: Center(
+                          child: Text(ExpenseType.values[i].name.toString()),
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (_, i) => const SizedBox(width: 6),
+                ),
               ),
+              const SizedBox(height: 8),
+              CheckboxListTile(
+                  value: refundable,
+                  title: const Text('Refundable'),
+                  onChanged: (_) {
+                    setState(() => refundable = !refundable);
+                  })
             ],
           ),
         ),
       ),
+      actionsAlignment: MainAxisAlignment.center,
       actions: <Widget>[
-        TextButton(
+        ElevatedButton(
           child: const Text('Cancel'),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        TextButton(
+        const SizedBox(width: 25),
+        ElevatedButton(
           child: Text(isEditing ? 'Save' : 'Add'),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
             if (isValid) {
-              final name = nameController.text;
-              final amount = int.tryParse(amountController.text) ?? 0;
               widget.onClickedDone(
-                name,
-                amount,
-                isExpense,
-                ExpenseType.donation,
+                nameController.text,
+                int.tryParse(amountController.text) ?? 0,
+                refundable,
+                type,
               );
               Navigator.of(context).pop();
             }

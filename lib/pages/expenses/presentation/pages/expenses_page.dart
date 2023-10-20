@@ -18,7 +18,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
     String name,
     int amount,
     bool isExpense,
-    ExpenseType type,
+    String type,
   ) async {
     final expense = Expense()
       ..name = name
@@ -57,9 +57,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             } else if (expenses.isNotEmpty) {
               final netExpense = expenses.fold<double>(
                 0,
-                (previousValue, expense) => expense.refundable
-                    ? previousValue - expense.amount
-                    : previousValue + expense.amount,
+                (previousValue, expense) =>  previousValue + expense.amount,
               );
               final newExpenseString = '\$${netExpense.toStringAsFixed(2)}';
               return Column(
