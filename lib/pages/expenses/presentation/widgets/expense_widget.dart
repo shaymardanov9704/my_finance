@@ -39,9 +39,9 @@ class ExpenseWidget extends StatelessWidget {
             maxLines: 2,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          subtitle: Text(DateFormat.yMMMd().format(expense.date)),
+          subtitle: Text(DateFormat('HH:mm | dd-MMM yyyy').format(expense.date)),
           trailing: Text(
-            '\$${expense.amount.toStringAsFixed(2)}',
+            "${expense.amount} ming UZS",
             style: TextStyle(
               color: expense.refundable ? Colors.green : Colors.red,
               fontWeight: FontWeight.bold,

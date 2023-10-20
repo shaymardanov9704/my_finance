@@ -55,11 +55,11 @@ class _ExpensesPageState extends State<ExpensesPage> {
                 ),
               );
             } else if (expenses.isNotEmpty) {
-              final netExpense = expenses.fold<double>(
+              final netExpense = expenses.fold<int>(
                 0,
                 (previousValue, expense) =>  previousValue + expense.amount,
               );
-              final newExpenseString = '\$${netExpense.toStringAsFixed(2)}';
+              final newExpenseString = '$netExpense ming UZS';
               return Column(
                 children: [
                   const SizedBox(height: 24),
@@ -89,7 +89,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
                           )
                         ]),
                     child: Text(
-                      'Net Expense: \n$newExpenseString',
+                      'Umumiy xarajatlar: \n$newExpenseString',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance/model/transaction.dart';
 import 'package:my_finance/pages/expenses/data/models/expense.dart';
 
 class ExpenseDialog extends StatefulWidget {
