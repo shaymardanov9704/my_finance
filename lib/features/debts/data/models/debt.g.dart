@@ -16,12 +16,13 @@ class DebtAdapter extends TypeAdapter<Debt> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Debt()
-      ..borrowerName = fields[0] as String
-      ..amount = fields[1] as int
-      ..isReturn = fields[2] as bool
-      ..createdDate = fields[3] as DateTime
-      ..returnDate = fields[4] as DateTime;
+    return Debt(
+      borrowerName: fields[0] as String,
+      amount: fields[1] as int,
+      isReturn: fields[2] as bool,
+      createdDate: fields[3] as DateTime,
+      returnDate: fields[4] as DateTime,
+    );
   }
 
   @override

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/constants/enums.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
+import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
 
 class ExpenseDialog extends StatefulWidget {
   final Expense? expense;
-  final Function(String name, int amount, bool refundable, String type)
-      onClickedDone;
 
   const ExpenseDialog({
     Key? key,
     this.expense,
-    required this.onClickedDone,
   }) : super(key: key);
 
   @override
@@ -23,6 +22,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
   final amountController = TextEditingController();
   String type = ExpenseType.other.name;
   bool refundable = false;
+  final box = ExpensesBox.getExpenses();
 
   @override
   void initState() {
@@ -34,6 +34,31 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
       refundable = expense.refundable;
       type = expense.type;
     }
+  }
+
+  void addExpense(String name, int amount, bool refundable, String type) {
+    final expense = Expense(
+      name: name,
+      amount: amount,
+      refundable: refundable,
+      createdDate: DateTime.now(),
+      type: type,
+    );
+    box.add(expense);
+  }
+
+  void editExpense(Expense expense, String? name, int? amount, bool? refundable,
+      String? type) {
+    final editedExpense = Expense(
+      name: name ?? expense.name,
+      amount: amount ?? expense.amount,
+      refundable: refundable ?? expense.refundable,
+      createdDate: expense.createdDate,
+      type: type ?? expense.type,
+    );
+
+    box.add(editedExpense);
+    expense.delete();
   }
 
   @override
@@ -48,7 +73,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
     final isEditing = widget.expense != null;
     return AlertDialog(
       title: Text(
-        isEditing ? 'Edit Transaction' : 'Add Transaction',
+        isEditing ? 'Edit Debt' : 'Add Debt',
         textAlign: TextAlign.center,
       ),
       scrollable: true,
@@ -57,65 +82,53 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 8),
-              TextFormField(
+              CustomTextField(
                 controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  hintText: 'Enter Name',
-                ),
+                title: "Title",
                 validator: (name) =>
-                    name != null && name.isEmpty ? 'Enter a name' : null,
+                    name != null && name.isEmpty ? 'Enter a valid name' : null,
               ),
-              const SizedBox(height: 8),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  hintText: 'Enter Amount',
-                ),
+              CustomTextField(
+                controller: amountController,
+                title: "Amount",
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
                         ? 'Enter a valid number'
                         : null,
-                controller: amountController,
               ),
-              const SizedBox(height: 16),
-              SizedBox(
-                width: 400,
-                height: 34,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: ExpenseType.values.length,
-                  itemBuilder: (_, i) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 1),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: type == ExpenseType.values[i].name
-                              ? Colors.lightGreen
-                              : Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                        ),
-                        onPressed: () => setState(
-                          () => type = ExpenseType.values[i].name,
-                        ),
-                        child: Center(
-                          child: Text(ExpenseType.values[i].name.toString()),
-                        ),
+              Wrap(
+                spacing: 3,
+                runSpacing: 0,
+                children: ExpenseType.values
+                    .map(
+                      (e) => Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: type == e.name
+                                  ? Colors.lightGreen
+                                  : Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                              ),
+                            ),
+                            onPressed: () => setState(() => type = e.name),
+                            child: Center(
+                              child: Text(e.name.toString()),
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                  separatorBuilder: (_, i) => const SizedBox(width: 6),
-                ),
+                    )
+                    .toList(),
               ),
-              const SizedBox(height: 8),
               CheckboxListTile(
                 value: refundable,
                 title: const Text('Refundable'),
@@ -139,12 +152,23 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
             if (isValid) {
-              widget.onClickedDone(
-                nameController.text,
-                int.tryParse(amountController.text) ?? 0,
-                refundable,
-                type,
-              );
+              if (isEditing) {
+                final expense = widget.expense!;
+                editExpense(
+                  expense,
+                  nameController.text,
+                  int.tryParse(amountController.text) ?? 0,
+                  refundable,
+                  type,
+                );
+              } else {
+                addExpense(
+                  nameController.text,
+                  int.tryParse(amountController.text) ?? 0,
+                  refundable,
+                  type,
+                );
+              }
               Navigator.of(context).pop();
             }
           },

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
+import 'package:my_finance/features/debts/data/repository/debts_box.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
 
 class DebtDialog extends StatefulWidget {
   final Debt? debt;
-  final Function(String name, int amount, bool isExpense, DateTime returnDate)
-      onClickedDone;
 
   const DebtDialog({
     Key? key,
     this.debt,
-    required this.onClickedDone,
   }) : super(key: key);
 
   @override
@@ -18,10 +18,12 @@ class DebtDialog extends StatefulWidget {
 
 class _DebtDialogState extends State<DebtDialog> {
   final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
+  final borrowerNameController = TextEditingController();
   final amountController = TextEditingController();
+  final returnDateController = TextEditingController();
   DateTime returnDate = DateTime.now();
   bool isReturns = false;
+  final box = DebtsBox.getDebts();
 
   @override
   void initState() {
@@ -29,15 +31,51 @@ class _DebtDialogState extends State<DebtDialog> {
 
     if (widget.debt != null) {
       final debt = widget.debt!;
-      nameController.text = debt.borrowerName;
+      borrowerNameController.text = debt.borrowerName;
       amountController.text = debt.amount.toString();
+      returnDate = debt.returnDate;
       isReturns = debt.isReturn;
     }
   }
 
+  void editDebt(
+    Debt debt,
+    String borrowerName,
+    int amount,
+    bool isReturn,
+    DateTime returnDate,
+  ) {
+    final editedDebt = Debt(
+      borrowerName: borrowerName,
+      amount: amount,
+      isReturn: isReturn,
+      createdDate: debt.createdDate,
+      returnDate: returnDate,
+    );
+
+    box.add(editedDebt);
+    debt.delete();
+  }
+
+  void addDebt(
+    String borrowerName,
+    int amount,
+    DateTime returnDate,
+  ) {
+    final debt = Debt(
+      borrowerName: borrowerName,
+      amount: amount,
+      isReturn: false,
+      createdDate: DateTime.now(),
+      returnDate: returnDate,
+    );
+
+    box.add(debt);
+  }
+
   @override
   void dispose() {
-    nameController.dispose();
+    borrowerNameController.dispose();
     amountController.dispose();
     super.dispose();
   }
@@ -54,22 +92,14 @@ class _DebtDialogState extends State<DebtDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter Name',
-                ),
+              CustomTextField(
+                controller: borrowerNameController,
+                title: "Borrower Name",
                 validator: (name) =>
                     name != null && name.isEmpty ? 'Enter a name' : null,
               ),
-              const SizedBox(height: 8),
-              TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter Amount',
-                ),
+              CustomTextField(
+                title: "Amount",
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
@@ -77,7 +107,27 @@ class _DebtDialogState extends State<DebtDialog> {
                         : null,
                 controller: amountController,
               ),
-              const SizedBox(height: 8),
+              CustomTextField(
+                controller: returnDateController,
+                title: DateFormat('dd.MM.yyyy').format(returnDate),
+                readOnly: true,
+                keyboardType: TextInputType.datetime,
+                validator: (String? value) {
+                  return null;
+                },
+                onTap: () async {
+                  returnDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(
+                          const Duration(days: 700),
+                        ),
+                      ) ??
+                      returnDate;
+                  setState(() {});
+                },
+              ),
             ],
           ),
         ),
@@ -91,10 +141,24 @@ class _DebtDialogState extends State<DebtDialog> {
           child: Text(isEditing ? 'Save' : 'Add'),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
+
             if (isValid) {
-              final name = nameController.text;
-              final amount = int.tryParse(amountController.text) ?? 0;
-              widget.onClickedDone(name, amount, isReturns, returnDate);
+              if (isEditing) {
+                final debt = widget.debt!;
+                editDebt(
+                  debt,
+                  borrowerNameController.text,
+                  int.tryParse(amountController.text) ?? 0,
+                  false,
+                  returnDate,
+                );
+              } else {
+                addDebt(
+                  borrowerNameController.text,
+                  int.tryParse(amountController.text) ?? 0,
+                  returnDate,
+                );
+              }
               Navigator.of(context).pop();
             }
           },

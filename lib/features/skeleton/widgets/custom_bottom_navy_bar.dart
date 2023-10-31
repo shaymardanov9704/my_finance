@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppBottomNavyBar extends StatelessWidget {
-  const AppBottomNavyBar({
+class CustomBottomNavyBar extends StatelessWidget {
+  const CustomBottomNavyBar({
     Key? key,
     this.selectedIndex = 0,
     this.iconSize = 24,
@@ -19,7 +19,7 @@ class AppBottomNavyBar extends StatelessWidget {
   final Color? backgroundColor;
 
   final Duration animationDuration;
-  final List<AppBottomNavyBarItem> items;
+  final List<CustomBottomNavyBarItem> items;
   final ValueChanged<int> onItemSelected;
   final MainAxisAlignment mainAxisAlignment;
   final Curve curve;
@@ -72,7 +72,7 @@ class AppBottomNavyBar extends StatelessWidget {
 class _ItemWidget extends StatelessWidget {
   final double iconSize;
   final bool isSelected;
-  final AppBottomNavyBarItem item;
+  final CustomBottomNavyBarItem item;
   final Color backgroundColor;
   final Duration animationDuration;
   final Curve curve;
@@ -128,8 +128,8 @@ class _ItemWidget extends StatelessWidget {
   }
 }
 
-class AppBottomNavyBarItem {
-  AppBottomNavyBarItem({
+class CustomBottomNavyBarItem {
+  CustomBottomNavyBarItem({
     this.path = "",
     this.activeColor = Colors.blue,
     this.textAlign,

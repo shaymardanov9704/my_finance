@@ -65,17 +65,7 @@ class ExpenseWidget extends StatelessWidget {
                     icon: const Icon(Icons.edit),
                     onPressed: () => showDialog(
                       context: context,
-                      builder: (context) => ExpenseDialog(
-                        expense: expense,
-                        onClickedDone: (name, amount, isExpense, type) =>
-                            editExpense(
-                          expense,
-                          name,
-                          amount,
-                          type,
-                          isExpense,
-                        ),
-                      ),
+                      builder: (context) => ExpenseDialog(expense: expense),
                     ),
                   ),
                 ),

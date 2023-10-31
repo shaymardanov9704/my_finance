@@ -5,17 +5,25 @@ part 'debt.g.dart';
 @HiveType(typeId: 3)
 class Debt extends HiveObject {
   @HiveField(0)
-  late String borrowerName;
+  final String borrowerName;
 
   @HiveField(1)
-  late int amount;
+  final int amount;
 
   @HiveField(2)
-  late bool isReturn;
+  final bool isReturn;
 
   @HiveField(3)
-  late DateTime createdDate;
+  final DateTime createdDate;
 
   @HiveField(4)
-  late DateTime returnDate;
+  final DateTime returnDate;
+
+  Debt({
+    required this.borrowerName,
+    required this.amount,
+    required this.isReturn,
+    required this.createdDate,
+    required this.returnDate,
+  });
 }

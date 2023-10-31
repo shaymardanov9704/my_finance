@@ -13,18 +13,6 @@ class DebtsPage extends StatefulWidget {
 }
 
 class _DebtsPageState extends State<DebtsPage> {
-  Future addDebt(String borrowerName, int amount, bool isReturn,
-      DateTime returnDate) async {
-    final debt = Debt()
-      ..borrowerName = borrowerName
-      ..createdDate = DateTime.now()
-      ..amount = amount
-      ..isReturn = isReturn
-      ..returnDate = returnDate;
-
-    final box = DebtsBox.getDebts();
-    box.add(debt);
-  }
 
   @override
   void dispose() {
@@ -91,9 +79,7 @@ class _DebtsPageState extends State<DebtsPage> {
           child: const Icon(Icons.add),
           onPressed: () => showDialog(
             context: context,
-            builder: (context) => DebtDialog(
-              onClickedDone: addDebt,
-            ),
+            builder: (context) => const DebtDialog(),
           ),
         ),
       );

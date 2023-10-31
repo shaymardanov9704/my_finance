@@ -14,23 +14,6 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<ExpensesPage> {
-  Future<void> addTransaction(
-    String name,
-    int amount,
-    bool isExpense,
-    String type,
-  ) async {
-    final expense = Expense(
-      name: name,
-      createdDate: DateTime.now(),
-      amount: amount,
-      type: type.toString(),
-      refundable: isExpense,
-    );
-
-    final box = ExpensesBox.getExpenses();
-    box.add(expense);
-  }
 
   @override
   void dispose() {
@@ -120,9 +103,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
           child: const Icon(Icons.add),
           onPressed: () => showDialog(
             context: context,
-            builder: (context) => ExpenseDialog(
-              onClickedDone: addTransaction,
-            ),
+            builder: (context) => const ExpenseDialog(),
           ),
         ),
       );
