@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
+import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
 
 class ExpenseWidget extends StatelessWidget {
@@ -17,11 +18,16 @@ class ExpenseWidget extends StatelessWidget {
     String type,
     bool refundable,
   ) {
-    expense.name = name;
-    expense.amount = amount;
-    expense.refundable = refundable;
-    expense.type = type;
-    expense.save();
+    final editedExpense = Expense(
+      name: name,
+      amount: amount,
+      refundable: refundable,
+      createdDate: expense.createdDate,
+      type: type,
+    );
+    expense.delete();
+    final box = ExpensesBox.getExpenses();
+    box.add(editedExpense);
   }
 
   void deleteExpense(Expense expense) => expense.delete();
@@ -39,7 +45,8 @@ class ExpenseWidget extends StatelessWidget {
             maxLines: 2,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          subtitle: Text(DateFormat('HH:mm | dd-MMM yyyy').format(expense.date)),
+          subtitle: Text(
+              DateFormat('HH:mm | dd-MMM yyyy').format(expense.createdDate)),
           trailing: Text(
             "${expense.amount} ming UZS",
             style: TextStyle(

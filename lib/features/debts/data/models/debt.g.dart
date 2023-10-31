@@ -20,7 +20,7 @@ class DebtAdapter extends TypeAdapter<Debt> {
       ..borrowerName = fields[0] as String
       ..amount = fields[1] as int
       ..isReturn = fields[2] as bool
-      ..date = fields[3] as DateTime
+      ..createdDate = fields[3] as DateTime
       ..returnDate = fields[4] as DateTime;
   }
 
@@ -35,7 +35,7 @@ class DebtAdapter extends TypeAdapter<Debt> {
       ..writeByte(2)
       ..write(obj.isReturn)
       ..writeByte(3)
-      ..write(obj.date)
+      ..write(obj.createdDate)
       ..writeByte(4)
       ..write(obj.returnDate);
   }

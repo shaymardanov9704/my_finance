@@ -16,12 +16,13 @@ class ExpenseAdapter extends TypeAdapter<Expense> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Expense()
-      ..name = fields[0] as String
-      ..amount = fields[1] as int
-      ..refundable = fields[2] as bool
-      ..date = fields[3] as DateTime
-      ..type = fields[4] as String;
+    return Expense(
+      name: fields[0] as String,
+      amount: fields[1] as int,
+      refundable: fields[2] as bool,
+      createdDate: fields[3] as DateTime,
+      type: fields[4] as String,
+    );
   }
 
   @override
@@ -35,7 +36,7 @@ class ExpenseAdapter extends TypeAdapter<Expense> {
       ..writeByte(2)
       ..write(obj.refundable)
       ..writeByte(3)
-      ..write(obj.date)
+      ..write(obj.createdDate)
       ..writeByte(4)
       ..write(obj.type);
   }

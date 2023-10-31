@@ -20,12 +20,13 @@ class _ExpensesPageState extends State<ExpensesPage> {
     bool isExpense,
     String type,
   ) async {
-    final expense = Expense()
-      ..name = name
-      ..date = DateTime.now()
-      ..amount = amount
-      ..type = type.toString()
-      ..refundable = isExpense;
+    final expense = Expense(
+      name: name,
+      createdDate: DateTime.now(),
+      amount: amount,
+      type: type.toString(),
+      refundable: isExpense,
+    );
 
     final box = ExpensesBox.getExpenses();
     box.add(expense);
@@ -57,7 +58,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             } else if (expenses.isNotEmpty) {
               final netExpense = expenses.fold<int>(
                 0,
-                (previousValue, expense) =>  previousValue + expense.amount,
+                (previousValue, expense) => previousValue + expense.amount,
               );
               final newExpenseString = '$netExpense ming UZS';
               return Column(

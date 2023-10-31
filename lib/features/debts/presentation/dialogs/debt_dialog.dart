@@ -3,7 +3,8 @@ import 'package:my_finance/features/debts/data/models/debt.dart';
 
 class DebtDialog extends StatefulWidget {
   final Debt? debt;
-  final Function(String name, int amount, bool isExpense) onClickedDone;
+  final Function(String name, int amount, bool isExpense, DateTime returnDate)
+      onClickedDone;
 
   const DebtDialog({
     Key? key,
@@ -19,6 +20,7 @@ class _DebtDialogState extends State<DebtDialog> {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final amountController = TextEditingController();
+  DateTime returnDate = DateTime.now();
   bool isReturns = false;
 
   @override
@@ -92,7 +94,7 @@ class _DebtDialogState extends State<DebtDialog> {
             if (isValid) {
               final name = nameController.text;
               final amount = int.tryParse(amountController.text) ?? 0;
-              widget.onClickedDone(name, amount, isReturns);
+              widget.onClickedDone(name, amount, isReturns, returnDate);
               Navigator.of(context).pop();
             }
           },

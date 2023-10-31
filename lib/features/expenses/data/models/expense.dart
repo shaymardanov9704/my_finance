@@ -5,29 +5,26 @@ part 'expense.g.dart';
 @HiveType(typeId: 2)
 class Expense extends HiveObject {
   @HiveField(0)
-  late String name;
+  final String name;
 
   @HiveField(1)
-  late int amount;
+  final int amount;
 
   @HiveField(2)
-  late bool refundable;
+  final bool refundable;
 
   @HiveField(3)
-  late DateTime date;
+  final DateTime createdDate;
 
   @HiveField(4)
-  late String type;
+  final String type;
+
+  Expense(
+      {required this.name,
+      required this.amount,
+      required this.refundable,
+      required this.createdDate,
+      required this.type});
 }
 
-enum ExpenseType {
-  sport,
-  medicine,
-  transport,
-  food,
-  shopping,
-  travel,
-  donation,
-  other,
-  family
-}
+

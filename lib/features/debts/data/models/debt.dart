@@ -14,7 +14,7 @@ class Debt extends HiveObject {
   late bool isReturn;
 
   @HiveField(3)
-  late DateTime date;
+  late DateTime createdDate;
 
   @HiveField(4)
   late DateTime returnDate;

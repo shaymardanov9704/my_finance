@@ -13,17 +13,19 @@ class DebtsPage extends StatefulWidget {
 }
 
 class _DebtsPageState extends State<DebtsPage> {
-
-  Future addTransaction(String name, int amount, bool isExpense) async {
+  Future addDebt(String borrowerName, int amount, bool isReturn,
+      DateTime returnDate) async {
     final debt = Debt()
-      ..borrowerName = name
-      ..date = DateTime.now()
+      ..borrowerName = borrowerName
+      ..createdDate = DateTime.now()
       ..amount = amount
-      ..isReturn = isExpense;
+      ..isReturn = isReturn
+      ..returnDate = returnDate;
 
     final box = DebtsBox.getDebts();
     box.add(debt);
   }
+
   @override
   void dispose() {
     Hive.close();
@@ -74,7 +76,9 @@ class _DebtsPageState extends State<DebtsPage> {
                       padding: const EdgeInsets.all(8),
                       itemCount: debts.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return DebtWidget(debt: debts[index],);
+                        return DebtWidget(
+                          debt: debts[index],
+                        );
                       },
                     ),
                   ),
@@ -88,16 +92,9 @@ class _DebtsPageState extends State<DebtsPage> {
           onPressed: () => showDialog(
             context: context,
             builder: (context) => DebtDialog(
-              onClickedDone: addTransaction,
+              onClickedDone: addDebt,
             ),
           ),
         ),
       );
-
-
-
-
-
-
-
 }

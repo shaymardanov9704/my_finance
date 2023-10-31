@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/constants/enums.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 
 class ExpenseDialog extends StatefulWidget {

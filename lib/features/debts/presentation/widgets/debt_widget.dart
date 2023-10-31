@@ -35,7 +35,7 @@ class DebtWidget extends StatelessWidget {
           maxLines: 2,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
-        subtitle: Text(DateFormat.yMMMd().format(debt.date)),
+        subtitle: Text(DateFormat.yMMMd().format(debt.createdDate)),
         trailing: Text(
           '\$${debt.amount.toStringAsFixed(2)}',
           style: TextStyle(
@@ -52,7 +52,7 @@ class DebtWidget extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => DebtDialog(
                         debt: debt,
-                        onClickedDone: (name, amount, isExpense) =>
+                        onClickedDone: (name, amount, isExpense,ret) =>
                             editTransaction(
                                 debt, name, amount, isExpense),
                       ),
