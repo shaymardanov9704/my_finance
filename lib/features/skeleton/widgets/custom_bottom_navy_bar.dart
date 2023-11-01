@@ -31,26 +31,17 @@ class CustomBottomNavyBar extends StatelessWidget {
     final bgColor = backgroundColor;
 
     return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blue,
-              blurRadius: 0.6,
-            ),
-          ],
-        ),
-        child: SafeArea(
-          child: Container(
-            width: double.infinity,
-            height: 80,
-            padding: const EdgeInsets.only(top: 12),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: mainAxisAlignment,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: items.map((item) {
+      child: BottomAppBar(
+        padding: EdgeInsets.zero,
+        child: Container(
+          height: 80,
+          padding: const EdgeInsets.only(top: 12),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: mainAxisAlignment,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: items.map(
+                (item) {
                   var index = items.indexOf(item);
                   return GestureDetector(
                     onTap: () => onItemSelected(index),
@@ -63,8 +54,8 @@ class CustomBottomNavyBar extends StatelessWidget {
                       curve: curve,
                     ),
                   );
-                }).toList(),
-              ),
+                },
+              ).toList(),
             ),
           ),
         ),
@@ -133,12 +124,10 @@ class CustomBottomNavyBarItem {
   CustomBottomNavyBarItem({
     required this.path,
     this.activeColor = Colors.blue,
-    this.textAlign,
     this.inactiveColor,
   });
 
   final String path;
   final Color activeColor;
   final Color? inactiveColor;
-  final TextAlign? textAlign;
 }

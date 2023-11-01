@@ -5,6 +5,7 @@ import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/expense_widget.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});
@@ -32,6 +33,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
           builder: (context, box, _) {
             final expenses = box.values.toList().cast<Expense>();
             if (expenses.isEmpty) {
+              return const Center(child: CustomSwitchThemeWidget());
               return const Center(
                 child: Text(
                   'No expenses yet!',

@@ -40,19 +40,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class ThemeWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
-    return ElevatedButton(
-      onPressed: () {
-        themeProvider.currentTheme == AppThemes.dark()
-            ? themeProvider.setTheme(0)
-            : themeProvider.setTheme(1); // Set dark theme
-      },
-      child: Text('Set Dark Theme'),
-    );
-  }
-}

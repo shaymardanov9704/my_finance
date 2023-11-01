@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 
 class AppThemes {
   static ThemeData light() {
     return ThemeData(
-      fontFamily: GoogleFonts.questrial().fontFamily,
       primarySwatch: Colors.green,
+      useMaterial3: true,
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: AppBarTheme(
         elevation: 0,
@@ -18,9 +17,9 @@ class AppThemes {
           fontSize: 20,
           color: AppColors.black,
           fontWeight: FontWeight.w600,
-          fontFamily: "Questrial",
         ),
       ),
+      brightness: Brightness.light,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
@@ -35,7 +34,6 @@ class AppThemes {
           color: AppColors.blue,
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          fontFamily: "Questrial",
         ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         enabledBorder: OutlineInputBorder(
@@ -57,8 +55,9 @@ class AppThemes {
 
   static ThemeData dark() {
     return ThemeData(
-      fontFamily: GoogleFonts.questrial().fontFamily,
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.green,
+      useMaterial3: true,
+      brightness: Brightness.dark,
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: AppBarTheme(
         elevation: 0,
@@ -70,7 +69,6 @@ class AppThemes {
           fontSize: 20,
           color: AppColors.black,
           fontWeight: FontWeight.w600,
-          fontFamily: "Questrial",
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -87,7 +85,6 @@ class AppThemes {
           color: AppColors.blue,
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          fontFamily: "Questrial",
         ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         enabledBorder: OutlineInputBorder(

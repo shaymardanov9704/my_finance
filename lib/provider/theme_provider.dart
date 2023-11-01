@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/utils/app_themes.dart';
 
 class ThemeProvider extends ChangeNotifier {
   late Box _themeBox;
-  ThemeData _currentTheme = ThemeData.light();
+  ThemeData _currentTheme = AppThemes.light();
 
   ThemeProvider() {
     _initHive();
@@ -27,11 +28,11 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData _getThemeFromIndex(int themeIndex) {
     switch (themeIndex) {
       case 0:
-        return ThemeData.light();
+        return AppThemes.light();
       case 1:
-        return ThemeData.dark();
+        return AppThemes.dark();
       default:
-        return ThemeData.light();
+        return AppThemes.light();
     }
   }
 }
