@@ -35,51 +35,48 @@ class ExpenseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          title: Text(
-            expense.name.toCamelCase(),
-            maxLines: 2,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        title: Text(
+          expense.name.toCamelCase(),
+          maxLines: 2,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        subtitle: Text(
+          DateFormat('HH:mm | dd-MMM yyyy').format(expense.createdDate),
+        ),
+        trailing: Text(
+          "${expense.amount} ming so`m",
+          style: TextStyle(
+            color: expense.refundable ? Colors.green : Colors.red,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
-          subtitle: Text(
-              DateFormat('HH:mm | dd-MMM yyyy').format(expense.createdDate)),
-          trailing: Text(
-            "${expense.amount} ming UZS",
-            style: TextStyle(
-              color: expense.refundable ? Colors.green : Colors.red,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-          leading: _Icon(type: expense.type),
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextButton.icon(
-                    label: const Text('Edit'),
-                    icon: const Icon(Icons.edit),
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => ExpenseDialog(expense: expense),
-                    ),
+        ),
+        leading: _Icon(type: expense.type),
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: TextButton.icon(
+                  label: const Text('Edit'),
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => ExpenseDialog(expense: expense),
                   ),
                 ),
-                Expanded(
-                  child: TextButton.icon(
-                    label: const Text('Delete'),
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => deleteExpense(expense),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+              ),
+              Expanded(
+                child: TextButton.icon(
+                  label: const Text('Delete'),
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => deleteExpense(expense),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

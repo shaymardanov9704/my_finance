@@ -30,9 +30,7 @@ class CustomTextField extends StatelessWidget {
         child: TextFormField(
           controller: controller,
           decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
+
             hintText: title,
           ),
           onTap: onTap,
