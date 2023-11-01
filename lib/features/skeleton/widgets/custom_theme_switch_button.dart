@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
-import 'package:my_finance/provider/theme_provider.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class CustomSwitchThemeWidget extends StatelessWidget {
