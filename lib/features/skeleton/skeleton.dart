@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
 import 'package:my_finance/features/profile/profile_page.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_bottom_navy_bar.dart';
 
 class Skeleton extends StatefulWidget {
   const Skeleton({Key? key}) : super(key: key);
@@ -33,35 +35,16 @@ class _SkeletonState extends State<Skeleton> {
         index: _index,
         children: _pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _index,
-        onTap: changePage,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.doc),
-            label: "Expenses",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.arrow_down_right_arrow_up_left),
-            label: "Debts",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.profile_circled),
-            label: "Profile",
-          ),
+      bottomNavigationBar: CustomBottomNavyBar(
+        selectedIndex: _index,
+        onItemSelected: changePage,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        items: [
+          CustomBottomNavyBarItem(path: 'assets/icons/wallet.svg',activeColor: AppColors.black),
+          CustomBottomNavyBarItem(path: 'assets/icons/card_transfer.svg',activeColor: AppColors.black),
+          CustomBottomNavyBarItem(path: 'assets/icons/statistics.svg',activeColor: AppColors.black),
         ],
       ),
-
-      //AppBottomNavyBar(
-      //         selectedIndex: _index,
-      //         onItemSelected: changePage,
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         items:  [
-      //           AppBottomNavyBarItem(),
-      //           AppBottomNavyBarItem(),
-      //           AppBottomNavyBarItem(),
-      //         ],
-      //       ),
     );
   }
 }

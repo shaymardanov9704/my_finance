@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
 
 class CustomBottomNavyBar extends StatelessWidget {
   const CustomBottomNavyBar({
@@ -42,25 +44,27 @@ class CustomBottomNavyBar extends StatelessWidget {
         child: SafeArea(
           child: Container(
             width: double.infinity,
-            height: 104,
+            height: 80,
             padding: const EdgeInsets.only(top: 12),
-            child: Row(
-              mainAxisAlignment: mainAxisAlignment,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: items.map((item) {
-                var index = items.indexOf(item);
-                return GestureDetector(
-                  onTap: () => onItemSelected(index),
-                  child: _ItemWidget(
-                    item: item,
-                    iconSize: iconSize,
-                    isSelected: index == selectedIndex,
-                    backgroundColor: bgColor??Colors.blue,
-                    animationDuration: animationDuration,
-                    curve: curve,
-                  ),
-                );
-              }).toList(),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: items.map((item) {
+                  var index = items.indexOf(item);
+                  return GestureDetector(
+                    onTap: () => onItemSelected(index),
+                    child: _ItemWidget(
+                      item: item,
+                      iconSize: iconSize,
+                      isSelected: index == selectedIndex,
+                      backgroundColor: bgColor ?? Colors.blue,
+                      animationDuration: animationDuration,
+                      curve: curve,
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
           ),
         ),
@@ -96,30 +100,27 @@ class _ItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AnimatedContainer(
-            width: isSelected ?80 : 66,
-            height: isSelected ? 80 : 66,
+            width: isSelected ? 55 : 45,
+            height: isSelected ? 55 : 45,
             duration: animationDuration,
             curve: curve,
             decoration: BoxDecoration(
               color: isSelected
-                  ? item.activeColor.withOpacity(0.6)
-                  : backgroundColor,
+                  ? item.activeColor.withOpacity(1)
+                  : item.activeColor.withOpacity(0.7),
               borderRadius: BorderRadius.circular(50),
             ),
-            child: const Center(
+            child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.bookmark_add),
-                  Text("Page Name")
+                  SvgPicture.asset(
+                    item.path,
+                    width: isSelected ? 32 : 28,
+                    color: AppColors.white,
+                  ),
                 ],
               ),
-              // child: SvgPicture.asset(
-              //   item.path,
-              //   width: isSelected ? 34 : 25,
-              //   color: Provider.of<ThemeProvider>(context).isDark
-              //       ? AppColors.white
-              //       : AppColors.black,
-              // ),
             ),
           ),
         ],
@@ -130,7 +131,7 @@ class _ItemWidget extends StatelessWidget {
 
 class CustomBottomNavyBarItem {
   CustomBottomNavyBarItem({
-    this.path = "",
+    required this.path,
     this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,

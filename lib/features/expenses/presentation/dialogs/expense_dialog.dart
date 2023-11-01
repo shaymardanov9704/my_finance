@@ -73,7 +73,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
     final isEditing = widget.expense != null;
     return AlertDialog(
       title: Text(
-        isEditing ? 'Edit Debt' : 'Add Debt',
+        isEditing ? 'Edit Expense' : 'Add Expense',
         textAlign: TextAlign.center,
       ),
       scrollable: true,
