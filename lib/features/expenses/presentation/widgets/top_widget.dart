@@ -20,6 +20,7 @@ class TopWidget extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
+            // context.watch<ThemeProvider>().currentTheme;
             AppColors.blue.withOpacity(0.8),
             AppColors.white,
           ],

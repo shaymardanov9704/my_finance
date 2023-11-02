@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
-import 'package:my_finance/features/profile/profile_page.dart';
+import 'package:my_finance/features/statistics/statistics_page.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_bottom_navy_bar.dart';
 
@@ -19,7 +19,7 @@ class _SkeletonState extends State<Skeleton> {
   final List<Widget> _pages = const [
     ExpensesPage(),
     DebtsPage(),
-    ProfilePage(),
+    StatisticsPage(),
   ];
 
   changePage(int i) {
@@ -40,9 +40,14 @@ class _SkeletonState extends State<Skeleton> {
         onItemSelected: changePage,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         items: [
-          CustomBottomNavyBarItem(path: 'assets/icons/wallet.svg',activeColor: AppColors.black),
-          CustomBottomNavyBarItem(path: 'assets/icons/card_transfer.svg',activeColor: AppColors.black),
-          CustomBottomNavyBarItem(path: 'assets/icons/statistics.svg',activeColor: AppColors.black),
+          CustomBottomNavyBarItem(
+              path: 'assets/icons/wallet.svg', activeColor: AppColors.black),
+          CustomBottomNavyBarItem(
+              path: 'assets/icons/card_transfer.svg',
+              activeColor: AppColors.black),
+          CustomBottomNavyBarItem(
+              path: 'assets/icons/statistics.svg',
+              activeColor: AppColors.black),
         ],
       ),
     );

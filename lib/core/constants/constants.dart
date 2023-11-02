@@ -1,7 +1,7 @@
 const String kAppName = "My Economic";
 const String kDebts = "debts";
-const String kExpenses = "expenses";
-const String kThemeBox = "expenses";
+const String kExpenses = "Expenses";
+const String kThemeBox = "themeBox";
 const String kCurrentTheme = "currentTheme";
 const String kEditDebt = "Edit Debt";
 const String kAddDebt = "Add Debt";
@@ -15,6 +15,7 @@ const String kSave = "Save";
 const String kAdd = "Add";
 const String kDebtsPage = "Debts Page";
 const String kExpensesPage = "Expenses Page";
+const String kStatisticsPage = "Statistics Page";
 const String kNotExpenses = "No expenses yet!";
 const String kNetExpense = "Net Expense";
 const String kEdit = "Edit";

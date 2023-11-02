@@ -37,7 +37,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(kExpenses),
+          title: const Text(kExpensesPage),
           actions: const [
             CustomSwitchThemeWidget(),
           ],
