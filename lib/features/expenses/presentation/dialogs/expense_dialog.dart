@@ -141,14 +141,13 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
           ),
         ),
       ),
-      actionsAlignment: MainAxisAlignment.center,
+      // actionsAlignment: MainAxisAlignment.center,
       actions: <Widget>[
-        ElevatedButton(
+        TextButton(
           child: const Text('Cancel'),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        const SizedBox(width: 25),
-        ElevatedButton(
+        TextButton(
           child: Text(isEditing ? 'Save' : 'Add'),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();

@@ -20,6 +20,8 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeData get currentTheme => _currentTheme;
 
+  bool get isDark => currentTheme.brightness == Brightness.dark;
+
   void setTheme(int themeIndex) {
     _currentTheme = _getThemeFromIndex(themeIndex);
     _themeBox.put(kCurrentTheme, themeIndex);

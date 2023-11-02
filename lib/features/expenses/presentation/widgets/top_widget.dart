@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class TopWidget extends StatelessWidget {
   final String amount;
@@ -10,6 +12,7 @@ class TopWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.watch<ThemeProvider>().isDark;
     return Container(
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -17,20 +20,26 @@ class TopWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            // context.watch<ThemeProvider>().currentTheme;
-            AppColors.blue.withOpacity(0.8),
-            AppColors.white,
-          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isDark
+              ? [
+                  AppColors.green,
+                  AppColors.green.withOpacity(0.9),
+                  AppColors.black,
+                ]
+              : [
+                  AppColors.green,
+                  AppColors.green.withOpacity(0.9),
+                  AppColors.white,
+                ],
         ),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Colors.black,
-            offset: Offset(0, 0.5),
-            blurRadius: 0.5,
-            spreadRadius: 0.5,
+            color:isDark?AppColors.green: AppColors.black,
+            offset: const Offset(0, 0.4),
+            blurRadius: 0.4,
+            spreadRadius: 0.4,
           )
         ],
       ),
