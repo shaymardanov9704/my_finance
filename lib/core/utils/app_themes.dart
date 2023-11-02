@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
+import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/core/utils/theme_properties.dart';
 
 class AppThemes {
@@ -17,6 +18,8 @@ class AppThemes {
       appBarTheme: ThemeProperties.appBar,
       inputDecorationTheme: ThemeProperties.inputDecoration,
       bottomAppBarTheme: ThemeProperties.bottomAppBar,
+      elevatedButtonTheme: ThemeProperties.elevatedButton,
+      textButtonTheme: ThemeProperties.textButton,
     );
   }
 
@@ -34,6 +37,8 @@ class AppThemes {
       floatingActionButtonTheme: ThemeProperties.darkFloatingActionButton,
       inputDecorationTheme: ThemeProperties.darkInputDecoration,
       bottomAppBarTheme: ThemeProperties.darkBottomAppBar,
+      elevatedButtonTheme: ThemeProperties.darkElevatedButton,
+      textButtonTheme: ThemeProperties.darkTextButton,
     );
   }
 }

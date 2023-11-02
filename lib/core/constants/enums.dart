@@ -7,5 +7,8 @@ enum ExpenseType {
   travel,
   donation,
   other,
-  family
+  family,
+  taxi,
+  wife,
+  education,
 }

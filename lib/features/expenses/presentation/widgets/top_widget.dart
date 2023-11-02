@@ -22,30 +22,31 @@ class TopWidget extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
+          tileMode: TileMode.repeated,
           colors: isDark
               ? [
-                  AppColors.green,
-                  AppColors.green.withOpacity(0.9),
-                  AppColors.black,
+                  AppColors.darCard,
+                  AppColors.darkBackground,
                 ]
               : [
-                  AppColors.green,
-                  AppColors.green.withOpacity(0.9),
+                  AppColors.card,
                   AppColors.white,
                 ],
         ),
         boxShadow: [
           BoxShadow(
-            color:isDark?AppColors.green: AppColors.black,
-            offset: const Offset(0, 0.4),
+            color: isDark ? AppColors.green : AppColors.black,
+            offset: const Offset(0.6, 0.6),
             blurRadius: 0.4,
             spreadRadius: 0.4,
           )
         ],
       ),
-      child: Text('$kExpensesOffThisMonth \n$amount',
-          textAlign: TextAlign.center,
-          style: AppTextStyles.style600.copyWith(fontSize: 20)),
+      child: Text(
+        '$kExpensesOffThisMonth \n$amount',
+        textAlign: TextAlign.center,
+        style: AppTextStyles.style600.copyWith(fontSize: 20),
+      ),
     );
   }
 }

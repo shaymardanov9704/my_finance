@@ -48,6 +48,20 @@ class ThemeProperties {
     backgroundColor: Colors.green,
     elevation: 1,
   );
+  static final elevatedButton = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.card,
+      elevation: 1,
+    ),
+  );
+  static final textButton = TextButtonThemeData(
+    style: TextButton.styleFrom(
+      textStyle: AppTextStyles.style600.copyWith(
+        color: AppColors.green,
+        fontSize: 20,
+      ),
+    ),
+  );
 
   ///Dark theme properties
   static final darkCard = CardTheme(
@@ -95,6 +109,20 @@ class ThemeProperties {
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: AppColors.red, width: 1),
+    ),
+  );
+  static final darkElevatedButton = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.darCard,
+      elevation: 1,
+    ),
+  );
+  static final darkTextButton = TextButtonThemeData(
+    style: TextButton.styleFrom(
+      textStyle: AppTextStyles.style600.copyWith(
+        color: AppColors.green,
+        fontSize: 20,
+      ),
     ),
   );
 }
