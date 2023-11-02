@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_themes.dart';
 
 class ThemeProvider extends ChangeNotifier {
@@ -12,8 +13,8 @@ class ThemeProvider extends ChangeNotifier {
 
   Future<void> _initHive() async {
     await Hive.initFlutter();
-    _themeBox = await Hive.openBox('themeBox');
-    final themeIndex = _themeBox.get('currentTheme', defaultValue: 0);
+    _themeBox = await Hive.openBox(kThemeBox);
+    final themeIndex = _themeBox.get(kCurrentTheme, defaultValue: 0);
     _currentTheme = _getThemeFromIndex(themeIndex);
   }
 
@@ -21,7 +22,7 @@ class ThemeProvider extends ChangeNotifier {
 
   void setTheme(int themeIndex) {
     _currentTheme = _getThemeFromIndex(themeIndex);
-    _themeBox.put('currentTheme', themeIndex);
+    _themeBox.put(kCurrentTheme, themeIndex);
     notifyListeners();
   }
 

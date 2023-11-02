@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
 
@@ -38,7 +39,7 @@ class DebtWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextButton.icon(
-                    label: const Text('Edit'),
+                    label: const Text(kEdit),
                     icon: const Icon(Icons.edit),
                     onPressed: () => showDialog(
                       context: context,
@@ -48,7 +49,7 @@ class DebtWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: TextButton.icon(
-                    label: const Text('Delete'),
+                    label: const Text(kDelete),
                     icon: const Icon(Icons.delete),
                     onPressed: () => deleteDebt(debt),
                   ),

@@ -29,10 +29,7 @@ class CustomTextField extends StatelessWidget {
         ),
         child: TextFormField(
           controller: controller,
-          decoration: InputDecoration(
-
-            hintText: title,
-          ),
+          decoration: InputDecoration(hintText: title),
           onTap: onTap,
           readOnly: readOnly,
           cursorWidth: 0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
@@ -85,7 +86,7 @@ class _DebtDialogState extends State<DebtDialog> {
     final isEditing = widget.debt != null;
 
     return AlertDialog(
-      title: Text(isEditing ? 'Edit Transaction' : 'Add Transaction'),
+      title: Text(isEditing ? kEditDebt : kAddDebt),
       content: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -94,22 +95,22 @@ class _DebtDialogState extends State<DebtDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: borrowerNameController,
-                title: "Borrower Name",
+                title: kBorrowerName,
                 validator: (name) =>
-                    name != null && name.isEmpty ? 'Enter a name' : null,
+                    name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
-                title: "Amount",
+                title: kAmount,
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
-                        ? 'Enter a valid number'
+                        ? kEnterAmount
                         : null,
                 controller: amountController,
               ),
               CustomTextField(
                 controller: returnDateController,
-                title: DateFormat('dd.MM.yyyy').format(returnDate),
+                title: DateFormat(kDateFormat).format(returnDate),
                 readOnly: true,
                 keyboardType: TextInputType.datetime,
                 validator: (String? value) {
@@ -134,11 +135,11 @@ class _DebtDialogState extends State<DebtDialog> {
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text('Cancel'),
+          child: const Text(kCancel),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
-          child: Text(isEditing ? 'Save' : 'Add'),
+          child: Text(isEditing ? kSave : kAdd),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
 

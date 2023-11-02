@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_themes.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,10 +14,10 @@ Future main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(ExpenseAdapter());
-  await Hive.openBox<Expense>('expenses');
+  await Hive.openBox<Expense>(kExpenses);
 
   Hive.registerAdapter(DebtAdapter());
-  await Hive.openBox<Debt>('debts');
+  await Hive.openBox<Debt>(kDebts);
 
   runApp(
     MultiProvider(
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Economic App',
+      title: kAppName,
       debugShowCheckedModeBanner: false,
       theme: context.watch<ThemeProvider>().currentTheme,
       darkTheme: AppThemes.dark(),

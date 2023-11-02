@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
@@ -13,7 +14,6 @@ class DebtsPage extends StatefulWidget {
 }
 
 class _DebtsPageState extends State<DebtsPage> {
-
   @override
   void dispose() {
     Hive.close();
@@ -23,7 +23,7 @@ class _DebtsPageState extends State<DebtsPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Debts Page '),
+          title: const Text(kDebtsPage),
           centerTitle: true,
         ),
         body: ValueListenableBuilder<Box<Debt>>(
@@ -33,7 +33,7 @@ class _DebtsPageState extends State<DebtsPage> {
             if (debts.isEmpty) {
               return const Center(
                 child: Text(
-                  'No expenses yet!',
+                  kNotExpenses,
                   style: TextStyle(fontSize: 24),
                 ),
               );
@@ -51,7 +51,7 @@ class _DebtsPageState extends State<DebtsPage> {
                 children: [
                   const SizedBox(height: 24),
                   Text(
-                    'Net Expense: $newExpenseString',
+                    '$kNetExpense: $newExpenseString',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,

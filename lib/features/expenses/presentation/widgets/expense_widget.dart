@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
@@ -43,10 +44,10 @@ class ExpenseWidget extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         subtitle: Text(
-          DateFormat('HH:mm | dd-MMM yyyy').format(expense.createdDate),
+          DateFormat(kDateFormatWithHour).format(expense.createdDate),
         ),
         trailing: Text(
-          "${expense.amount} ming so`m",
+          "${expense.amount} $kThousandSum",
           style: TextStyle(
             color: expense.refundable ? Colors.green : Colors.red,
             fontWeight: FontWeight.bold,
@@ -59,7 +60,7 @@ class ExpenseWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: TextButton.icon(
-                  label: const Text('Edit'),
+                  label: const Text(kEdit),
                   icon: const Icon(Icons.edit),
                   onPressed: () => showDialog(
                     context: context,
@@ -69,7 +70,7 @@ class ExpenseWidget extends StatelessWidget {
               ),
               Expanded(
                 child: TextButton.icon(
-                  label: const Text('Delete'),
+                  label: const Text(kDelete),
                   icon: const Icon(Icons.delete),
                   onPressed: () => deleteExpense(expense),
                 ),

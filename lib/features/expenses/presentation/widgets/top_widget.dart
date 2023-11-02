@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 
@@ -32,7 +33,7 @@ class TopWidget extends StatelessWidget {
           )
         ],
       ),
-      child: Text('Ushbu oydagi xarajatlar \n$amount',
+      child: Text('$kExpensesOffThisMonth \n$amount',
           textAlign: TextAlign.center,
           style: AppTextStyles.style600.copyWith(fontSize: 20)),
     );

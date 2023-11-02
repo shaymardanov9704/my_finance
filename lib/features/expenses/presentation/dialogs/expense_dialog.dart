@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/constants/enums.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
@@ -73,7 +74,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
     final isEditing = widget.expense != null;
     return AlertDialog(
       title: Text(
-        isEditing ? 'Edit Expense' : 'Add Expense',
+        isEditing ? kEditExpense : kAddExpense,
         textAlign: TextAlign.center,
       ),
       scrollable: true,
@@ -86,17 +87,17 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: nameController,
-                title: "Title",
+                title: kTitle,
                 validator: (name) =>
-                    name != null && name.isEmpty ? 'Enter a valid name' : null,
+                    name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
                 controller: amountController,
-                title: "Amount",
+                title: kAmount,
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
-                        ? 'Enter a valid number'
+                        ? kEnterAmount
                         : null,
               ),
               Wrap(
@@ -131,7 +132,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               ),
               CheckboxListTile(
                 value: refundable,
-                title: const Text('Refundable'),
+                title: const Text(kRefundable),
                 onChanged: (_) {
                   setState(() => refundable = !refundable);
                 },

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
@@ -36,7 +37,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Xarajatlar'),
+          title: const Text(kExpenses),
           actions: const [
             CustomSwitchThemeWidget(),
           ],
@@ -48,7 +49,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             if (expenses.isEmpty) {
               return const Center(
                 child: Text(
-                  'Xarajatlar bu oyda mavjud emas!',
+                  kNotExpenses,
                   style: TextStyle(fontSize: 24),
                 ),
               );
