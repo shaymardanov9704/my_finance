@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +8,8 @@ import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseWidget extends StatelessWidget {
   final Expense expense;
@@ -40,35 +41,23 @@ class ExpenseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ExpansionTile(
-        tilePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        tilePadding: const EdgeInsets.symmetric(horizontal: 12),
         title: Text(
           expense.name.toCamelCase(),
           maxLines: 2,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: AppTextStyles.style600.copyWith(fontSize: 18),
         ),
         subtitle: Text(
           DateFormat(kDateFormatWithHour).format(expense.createdDate),
         ),
         trailing: Text(
           "${expense.amount} $kThousandSum",
-          style: TextStyle(
+          style: AppTextStyles.style700.copyWith(
             color: expense.refundable ? Colors.green : Colors.red,
-            fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        leading: Container(
-          width: 40,
-          height: 40,
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: AppColors.purple,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Center(
-            child: _Icon(type: expense.type),
-          ),
-        ),
+        leading: LeadingWidget(type: expense.type),
         children: [
           Row(
             children: [
@@ -105,75 +94,47 @@ class ExpenseWidget extends StatelessWidget {
   }
 }
 
-class _Icon extends StatelessWidget {
+class LeadingWidget extends StatelessWidget {
   final String type;
 
-  const _Icon({Key? key, required this.type}) : super(key: key);
+  const LeadingWidget({Key? key, required this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    switch (type) {
-      case "food":
-        return SvgPicture.asset(
-          "assets/icons/food.svg",
-          color: AppColors.white,
-        );
-      case "medicine":
-        return SvgPicture.asset(
-          "assets/icons/medicine.svg",
-          color: AppColors.white,
-        );
-      case "sport":
-        return SvgPicture.asset(
-          "assets/icons/gym.svg",
-          color: AppColors.white,
-        );
-      case "donation":
-        return SvgPicture.asset(
-          "assets/icons/donate.svg",
-          color: AppColors.white,
-        );
-      case "other":
-        return SvgPicture.asset(
-          "assets/icons/other.svg",
-          color: AppColors.white,
-        );
-      case "family":
-        return SvgPicture.asset(
-          "assets/icons/family.svg",
-          color: AppColors.white,
-        );
-      case "travel":
-        return SvgPicture.asset(
-          "assets/icons/travel.svg",
-          color: AppColors.white,
-        );
-      case "transport":
-        return SvgPicture.asset(
-          "assets/icons/bus.svg",
-          color: AppColors.white,
-        );
-      case "shopping":
-        return SvgPicture.asset(
-          "assets/icons/shopping.svg",
-          color: AppColors.white,
-        );
-      case "wife":
-        return SvgPicture.asset(
-          "assets/icons/wedding.svg",
-          color: AppColors.white,
-        );
-      case "taxi":
-        return SvgPicture.asset(
-          "assets/icons/taxi.svg",
-          color: AppColors.white,
-        );
-      case "education":
-        return SvgPicture.asset(
-          "assets/icons/education.svg",
-            color: AppColors.white,
-        );
-    }
-    return const SizedBox();
+    return Container(
+      width: 42,
+      height: 42,
+      padding: const EdgeInsets.all(6),
+      decoration: BoxDecoration(
+        color: _color(type),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          "assets/icons/$type.svg",
+          color: context.watch<ThemeProvider>().isDark
+              ? AppColors.white
+              : AppColors.black,
+        ),
+      ),
+    );
   }
+}
+
+Color _color(String type) {
+  switch (type) {
+    case "travel" || "shopping":
+      return AppColors.orange.withOpacity(0.4);
+    case "sport" || "food" || "education":
+      return AppColors.green.withOpacity(0.4);
+    case "medicine" || "family" || "donation":
+      return AppColors.blue.withOpacity(0.4);
+    case "transport" || "taxi":
+      return AppColors.yellow.withOpacity(0.4);
+    case "other":
+      return AppColors.red.withOpacity(0.4);
+    case "wife":
+      return AppColors.purple.withOpacity(0.4);
+  }
+  return AppColors.black.withOpacity(0.4);
 }
