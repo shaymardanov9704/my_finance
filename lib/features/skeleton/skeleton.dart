@@ -19,7 +19,7 @@ class _SkeletonState extends State<Skeleton> {
   final List<Widget> _pages = const [
     ExpensesPage(),
     DebtsPage(),
-    StatisticsPage(),
+    // StatisticsPage(),
   ];
 
   changePage(int i) {
@@ -41,13 +41,17 @@ class _SkeletonState extends State<Skeleton> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         items: [
           CustomBottomNavyBarItem(
-              path: 'assets/icons/wallet.svg', activeColor: AppColors.black),
+            path: 'assets/icons/wallet.svg',
+            activeColor: AppColors.black,
+          ),
           CustomBottomNavyBarItem(
-              path: 'assets/icons/card_transfer.svg',
-              activeColor: AppColors.black),
-          CustomBottomNavyBarItem(
-              path: 'assets/icons/statistics.svg',
-              activeColor: AppColors.black),
+            path: 'assets/icons/card_transfer.svg',
+            activeColor: AppColors.black,
+          ),
+          // CustomBottomNavyBarItem(
+          //   path: 'assets/icons/statistics.svg',
+          //   activeColor: AppColors.black,
+          // ),
         ],
       ),
     );
