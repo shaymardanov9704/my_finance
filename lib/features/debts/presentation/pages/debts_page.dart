@@ -5,6 +5,9 @@ import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
 import 'package:my_finance/features/debts/presentation/widgets/debt_widget.dart';
+import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
+
+import '../../../skeleton/widgets/custom_theme_switch_button.dart';
 
 class DebtsPage extends StatefulWidget {
   const DebtsPage({super.key});
@@ -14,10 +17,14 @@ class DebtsPage extends StatefulWidget {
 }
 
 class _DebtsPageState extends State<DebtsPage> {
-  @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
+  int allDebts(List<Debt> debts) {
+    final allDebts = debts.fold<int>(
+      0,
+      (previousValue, transaction) => transaction.isReturn
+          ? previousValue + 0
+          : previousValue - transaction.amount,
+    );
+    return allDebts;
   }
 
   @override
@@ -25,6 +32,9 @@ class _DebtsPageState extends State<DebtsPage> {
         appBar: AppBar(
           title: const Text(kDebtsPage),
           centerTitle: true,
+          actions: const [
+            CustomSwitchThemeWidget(),
+          ],
         ),
         body: ValueListenableBuilder<Box<Debt>>(
           valueListenable: DebtsBox.getDebts().listenable(),
@@ -38,26 +48,10 @@ class _DebtsPageState extends State<DebtsPage> {
                 ),
               );
             } else {
-              final netExpense = debts.fold<double>(
-                0,
-                (previousValue, transaction) => transaction.isReturn
-                    ? previousValue - transaction.amount
-                    : previousValue + transaction.amount,
-              );
-              final newExpenseString = '\$${netExpense.toStringAsFixed(2)}';
-              final color = netExpense > 0 ? Colors.green : Colors.red;
-
               return Column(
                 children: [
                   const SizedBox(height: 24),
-                  Text(
-                    '$kNetExpense: $newExpenseString',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: color,
-                    ),
-                  ),
+                  TopWidget(amount: allDebts(debts)),
                   const SizedBox(height: 24),
                   Expanded(
                     child: ListView.builder(

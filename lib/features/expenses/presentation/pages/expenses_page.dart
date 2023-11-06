@@ -29,18 +29,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
   }
 
   @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(kExpensesPage),
-          actions: const [
-            CustomSwitchThemeWidget(),
-          ],
         ),
         body: ValueListenableBuilder<Box<Expense>>(
           valueListenable: ExpensesBox.getExpenses().listenable(),

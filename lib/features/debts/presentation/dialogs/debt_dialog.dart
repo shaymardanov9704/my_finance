@@ -78,6 +78,7 @@ class _DebtDialogState extends State<DebtDialog> {
   void dispose() {
     borrowerNameController.dispose();
     amountController.dispose();
+    returnDateController.dispose();
     super.dispose();
   }
 
@@ -129,6 +130,14 @@ class _DebtDialogState extends State<DebtDialog> {
                   setState(() {});
                 },
               ),
+              CheckboxListTile(
+                title: const Text(kIsReturn),
+                value: isReturns,
+                onChanged: (value) {
+                  setState(() {});
+                  isReturns = value!;
+                },
+              ),
             ],
           ),
         ),
@@ -150,7 +159,7 @@ class _DebtDialogState extends State<DebtDialog> {
                   debt,
                   borrowerNameController.text,
                   int.tryParse(amountController.text) ?? 0,
-                  false,
+                  isReturns,
                   returnDate,
                 );
               } else {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance/core/constants/constants.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
+import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
 
@@ -19,17 +21,24 @@ class DebtWidget extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          tilePadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          tilePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           title: Text(
             debt.borrowerName,
             maxLines: 2,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          subtitle: Text(DateFormat.yMMMd().format(debt.returnDate)),
+          subtitle: Text(
+            "$kReturnDate: ${DateFormat(kDateFormat).format(debt.returnDate)}",
+            style: AppTextStyles.style500.copyWith(
+              color: DateTime.now().isBefore(debt.returnDate)||debt.isReturn
+                  ? AppColors.green
+                  : AppColors.red,
+            ),
+          ),
           trailing: Text(
-            debt.amount.toStringAsFixed(3),
+            "${debt.amount} $kThousandSum",
             style: TextStyle(
-              color: debt.isReturn ? Colors.red : Colors.green,
+              color: debt.isReturn ? Colors.green : Colors.red,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -53,7 +62,7 @@ class DebtWidget extends StatelessWidget {
                     icon: const Icon(Icons.delete),
                     onPressed: () => deleteDebt(debt),
                   ),
-                )
+                ),
               ],
             ),
           ],
