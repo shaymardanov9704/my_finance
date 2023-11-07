@@ -68,7 +68,7 @@ class _SkeletonState extends State<Skeleton> {
       ),
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
-        curve: Curves.bounceIn,
+        curve: Curves.linear,
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style9,
