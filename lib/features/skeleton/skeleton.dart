@@ -8,7 +8,7 @@ import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
-import 'package:my_finance/features/statistics/statistics_page.dart';
+import 'package:my_finance/features/statistics/presentation/pages/statistics_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance/core/constants/constants.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
 
 class StatisticsPage extends StatefulWidget {
   const StatisticsPage({Key? key}) : super(key: key);
@@ -11,6 +11,12 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPageState extends State<StatisticsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: CustomEmptyScreen(
+          title: "Empty",
+        ),
+      ),
+    );
   }
 }
