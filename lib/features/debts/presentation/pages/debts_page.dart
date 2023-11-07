@@ -33,13 +33,6 @@ class _DebtsPageState extends State<DebtsPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text(kDebtsPage),
-          centerTitle: true,
-          actions: const [
-            CustomSwitchThemeWidget(),
-          ],
-        ),
         body: ValueListenableBuilder<Box<Debt>>(
           valueListenable: DebtsBox.getDebts().listenable(),
           builder: (context, box, _) {

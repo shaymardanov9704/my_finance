@@ -34,12 +34,6 @@ class _ExpensesPageState extends State<ExpensesPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text(kExpensesPage),
-          actions: const [
-            CustomSwitchThemeWidget(),
-          ],
-        ),
         body: ValueListenableBuilder<Box<Expense>>(
           valueListenable: ExpensesBox.getExpenses().listenable(),
           builder: (context, box, _) {

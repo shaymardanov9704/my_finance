@@ -12,7 +12,6 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   Future<void> _initHive() async {
-    await Hive.initFlutter();
     _themeBox = await Hive.openBox(kThemeBox);
     final themeIndex = _themeBox.get(kCurrentTheme, defaultValue: 0);
     _currentTheme = _getThemeFromIndex(themeIndex);

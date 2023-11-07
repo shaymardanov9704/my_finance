@@ -87,7 +87,7 @@ class ThemeProperties {
   static final darkIcon = IconThemeData(color: AppColors.white);
 
   static final darkAppBar = AppBarTheme(
-    elevation: 0.1,
+    elevation: 0.5,
     centerTitle: true,
     shadowColor: AppColors.background,
     backgroundColor: AppColors.darkBackground,
@@ -101,6 +101,7 @@ class ThemeProperties {
 
   static final darkBottomAppBar = BottomAppBarTheme(
     elevation: 0.5,
+
     shadowColor: AppColors.background,
   );
 
