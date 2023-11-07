@@ -17,6 +17,7 @@ const String kDebtsPage = "Debts Page";
 const String kExpensesPage = "Expenses Page";
 const String kStatisticsPage = "Statistics Page";
 const String kNotExpenses = "No expenses yet!";
+const String kNotDebts = "No debts yet!";
 const String kNetExpense = "Net Expense";
 const String kEdit = "Edit";
 const String kDelete = "Delete";

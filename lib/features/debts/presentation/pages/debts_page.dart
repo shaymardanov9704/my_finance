@@ -8,6 +8,7 @@ import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart'
 import 'package:my_finance/features/debts/presentation/widgets/debt_widget.dart';
 import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../skeleton/widgets/custom_theme_switch_button.dart';
@@ -45,10 +46,7 @@ class _DebtsPageState extends State<DebtsPage> {
             final debts = box.values.toList().cast<Debt>();
             if (debts.isEmpty) {
               return const Center(
-                child: Text(
-                  kNotExpenses,
-                  style: TextStyle(fontSize: 24),
-                ),
+                child: CustomEmptyScreen(title: kNotDebts),
               );
             } else {
               return Column(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,10 +10,11 @@ class CustomSwitchThemeWidget extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Switch(
       value: themeProvider.currentTheme.brightness == Brightness.dark,
-      activeColor: AppColors.green.withOpacity(0.4),
-      inactiveThumbColor: AppColors.green,
-      inactiveTrackColor: AppColors.white,
-      activeTrackColor: AppColors.green,
+      activeColor: Colors.transparent,
+      inactiveThumbColor: Colors.transparent,
+      inactiveTrackColor: Colors.transparent,
+      activeThumbImage: const AssetImage("assets/icons/dark.png"),
+      inactiveThumbImage: const AssetImage("assets/icons/light.png"),
       onChanged: (value) {
         if (value) {
           themeProvider.setTheme(1); // Set dark theme

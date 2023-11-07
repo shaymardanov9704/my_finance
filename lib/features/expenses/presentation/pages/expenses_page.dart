@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
@@ -9,6 +10,8 @@ import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog
 import 'package:my_finance/features/expenses/presentation/widgets/expense_widget.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
 import 'package:provider/provider.dart';
 
 class ExpensesPage extends StatefulWidget {
@@ -33,6 +36,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(kExpensesPage),
+          actions: const [
+            CustomSwitchThemeWidget(),
+          ],
         ),
         body: ValueListenableBuilder<Box<Expense>>(
           valueListenable: ExpensesBox.getExpenses().listenable(),
@@ -40,10 +46,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             final expenses = box.values.toList().cast<Expense>();
             if (expenses.isEmpty) {
               return const Center(
-                child: Text(
-                  kNotExpenses,
-                  style: TextStyle(fontSize: 24),
-                ),
+                child: CustomEmptyScreen(title: kNotExpenses),
               );
             } else if (expenses.isNotEmpty) {
               return Column(
