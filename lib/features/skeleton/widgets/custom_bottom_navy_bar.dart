@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
-import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:my_finance/core/utils/app_text_styles.dart';
 
 class CustomBottomNavyBar extends StatelessWidget {
   const CustomBottomNavyBar({
@@ -93,25 +92,33 @@ class _ItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AnimatedContainer(
-            width: isSelected ? 55 : 45,
-            height: isSelected ? 55 : 45,
+            width: isSelected ? 120 : 45,
+            height: 45,
             duration: animationDuration,
             curve: curve,
+            padding: const EdgeInsets.symmetric(horizontal: 6),
             decoration: BoxDecoration(
-              color: isSelected
-                  ? item.activeColor.withOpacity(1)
-                  : item.activeColor.withOpacity(0.7),
-              borderRadius: BorderRadius.circular(50),
+              color: item.activeColor,
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
+                mainAxisAlignment: isSelected
+                    ? MainAxisAlignment.spaceAround
+                    : MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
                     item.path,
                     width: isSelected ? 32 : 28,
-                    color: context.watch<ThemeProvider>().isDark? AppColors.white:AppColors.black,
+                    color: AppColors.white,
+                    //:AppColors.black,//context.watch<ThemeProvider>().isDark?
                   ),
+                  Text(
+                    isSelected ? item.title : "",
+                    style: AppTextStyles.style600.copyWith(
+                      color: AppColors.white,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -125,11 +132,13 @@ class _ItemWidget extends StatelessWidget {
 class CustomBottomNavyBarItem {
   CustomBottomNavyBarItem({
     required this.path,
+    required this.title,
     this.activeColor = Colors.blue,
     this.inactiveColor,
   });
 
   final String path;
+  final String title;
   final Color activeColor;
   final Color? inactiveColor;
 }

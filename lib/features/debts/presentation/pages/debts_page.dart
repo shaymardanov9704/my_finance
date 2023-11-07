@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/core/constants/constants.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
 import 'package:my_finance/features/debts/presentation/widgets/debt_widget.dart';
 import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../skeleton/widgets/custom_theme_switch_button.dart';
 
@@ -70,10 +73,15 @@ class _DebtsPageState extends State<DebtsPage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
           onPressed: () => showDialog(
             context: context,
             builder: (context) => const DebtDialog(),
+          ),
+          child: Icon(
+            Icons.add,
+            color: context.watch<ThemeProvider>().isDark
+                ? AppColors.green
+                : AppColors.primary,
           ),
         ),
       );

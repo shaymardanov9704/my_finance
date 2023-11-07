@@ -50,9 +50,10 @@ class ThemeProperties {
   );
 
   static final floatingActionButton = FloatingActionButtonThemeData(
-      backgroundColor: AppColors.green,
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)));
+    backgroundColor: AppColors.primary.withOpacity(0.2),
+    elevation: 0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+  );
 
   static final elevatedButton = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -104,8 +105,8 @@ class ThemeProperties {
   );
 
   static final darkFloatingActionButton = FloatingActionButtonThemeData(
-      backgroundColor: AppColors.green,
-      elevation: 1,
+      backgroundColor: AppColors.green.withOpacity(0.2),
+      elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)));
 
   static final darkInputDecoration = InputDecorationTheme(

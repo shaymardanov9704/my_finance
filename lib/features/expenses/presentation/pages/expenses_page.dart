@@ -8,7 +8,8 @@ import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/expense_widget.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/top_widget.dart';
-import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class ExpensesPage extends StatefulWidget {
   const ExpensesPage({super.key});
@@ -67,10 +68,15 @@ class _ExpensesPageState extends State<ExpensesPage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add, color: AppColors.black),
           onPressed: () => showDialog(
             context: context,
             builder: (context) => const ExpenseDialog(),
+          ),
+          child: Icon(
+            Icons.add,
+            color: context.watch<ThemeProvider>().isDark
+                ? AppColors.green
+                : AppColors.primary,
           ),
         ),
       );
