@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
-import 'package:my_finance/features/statistics/statistics_page.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_bottom_navy_bar.dart';
+import 'package:provider/provider.dart';
 
 class Skeleton extends StatefulWidget {
   const Skeleton({Key? key}) : super(key: key);
@@ -42,11 +43,11 @@ class _SkeletonState extends State<Skeleton> {
         items: [
           CustomBottomNavyBarItem(
             path: 'assets/icons/wallet.svg',
-            activeColor: AppColors.black,
+            activeColor: context.watch<ThemeProvider>().isDark?  AppColors.darkPrimary:AppColors.blue,
           ),
           CustomBottomNavyBarItem(
             path: 'assets/icons/card_transfer.svg',
-            activeColor: AppColors.black,
+            activeColor: context.watch<ThemeProvider>().isDark?  AppColors.darkPrimary:AppColors.blue,
           ),
           // CustomBottomNavyBarItem(
           //   path: 'assets/icons/statistics.svg',

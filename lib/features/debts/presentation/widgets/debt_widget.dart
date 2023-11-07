@@ -18,55 +18,54 @@ class DebtWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          title: Text(
-            debt.borrowerName,
-            maxLines: 2,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          subtitle: Text(
-            "$kReturnDate: ${DateFormat(kDateFormat).format(debt.returnDate)}",
-            style: AppTextStyles.style500.copyWith(
-              color: DateTime.now().isBefore(debt.returnDate)||debt.isReturn
-                  ? AppColors.green
-                  : AppColors.red,
-            ),
-          ),
-          trailing: Text(
-            "${debt.amount} $kThousandSum",
-            style: TextStyle(
-              color: debt.isReturn ? Colors.green : Colors.red,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextButton.icon(
-                    label: const Text(kEdit),
-                    icon: const Icon(Icons.edit),
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => DebtDialog(debt: debt),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton.icon(
-                    label: const Text(kDelete),
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => deleteDebt(debt),
-                  ),
-                ),
-              ],
-            ),
-          ],
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        title: Text(
+          debt.borrowerName,
+          maxLines: 2,
+          style: AppTextStyles.style700.copyWith(fontSize: 18),
         ),
+        subtitle: Text(
+          "$kReturnDate: ${DateFormat(kDateFormat).format(debt.returnDate)}",
+          style: AppTextStyles.style500.copyWith(
+            color: DateTime.now().isBefore(debt.returnDate)||debt.isReturn
+                ? AppColors.green
+                : AppColors.red,
+          ),
+        ),
+        trailing: Text(
+          "${debt.amount} $kThousandSum",
+          style: AppTextStyles.style700.copyWith(
+            color: debt.isReturn ? Colors.green : Colors.red,
+            fontSize: 16,
+          ),
+        ),
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: TextButton.icon(
+                  label: const Text(kEdit),
+                  style: TextButton.styleFrom(
+                    textStyle: AppTextStyles.style700.copyWith(color: Colors.white)
+                  ),
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => DebtDialog(debt: debt),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: TextButton.icon(
+                  label: const Text(kDelete),
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => deleteDebt(debt),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomBottomNavyBar extends StatelessWidget {
   const CustomBottomNavyBar({
@@ -108,7 +110,7 @@ class _ItemWidget extends StatelessWidget {
                   SvgPicture.asset(
                     item.path,
                     width: isSelected ? 32 : 28,
-                    color: AppColors.white,
+                    color: context.watch<ThemeProvider>().isDark? AppColors.white:AppColors.black,
                   ),
                 ],
               ),

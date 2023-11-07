@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance/core/constants/constants.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
+
+import '../../../../core/utils/app_text_styles.dart';
 
 class DebtDialog extends StatefulWidget {
   final Debt? debt;
@@ -144,11 +147,17 @@ class _DebtDialogState extends State<DebtDialog> {
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text(kCancel),
+          child: Text(
+            kCancel,
+            style: AppTextStyles.style600.copyWith(color: AppColors.green),
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
-          child: Text(isEditing ? kSave : kAdd),
+          child: Text(
+            isEditing ? kSave : kAdd,
+            style: AppTextStyles.style600.copyWith(color: AppColors.green),
+          ),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
 

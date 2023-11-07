@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/constants/enums.dart';
+import 'package:my_finance/core/extentions/string_extension.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
+import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
+import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseDialog extends StatefulWidget {
   final Expense? expense;
@@ -110,19 +115,19 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: type == e.name
-                                  ? Colors.lightGreen
-                                  : Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 6,
-                              ),
+                              backgroundColor:
+                                  type == e.name ? Colors.lightGreen : null,
                             ),
                             onPressed: () => setState(() => type = e.name),
                             child: Center(
-                              child: Text(e.name.toString()),
+                              child: Text(
+                                e.name.toString().toCamelCase(),
+                                style: AppTextStyles.style500.copyWith(
+                                  color: context.watch<ThemeProvider>().isDark
+                                      ? AppColors.white
+                                      : AppColors.black,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -144,11 +149,17 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
       // actionsAlignment: MainAxisAlignment.center,
       actions: <Widget>[
         TextButton(
-          child: const Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: AppTextStyles.style600.copyWith(color: AppColors.green),
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
-          child: Text(isEditing ? 'Save' : 'Add'),
+          child: Text(
+            isEditing ? 'Save' : 'Add',
+            style: AppTextStyles.style600.copyWith(color: AppColors.green),
+          ),
           onPressed: () async {
             final isValid = formKey.currentState!.validate();
             if (isValid) {
