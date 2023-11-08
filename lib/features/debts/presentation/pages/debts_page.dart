@@ -39,7 +39,10 @@ class _DebtsPageState extends State<DebtsPage> {
             final debts = box.values.toList().cast<Debt>();
             if (debts.isEmpty) {
               return const Center(
-                child: CustomEmptyScreen(title: kNotDebts),
+                child: CustomEmptyScreen(
+                  title: kNotDebts,
+                  iconPath: "assets/icons/empty_debts.svg",
+                ),
               );
             } else {
               return Column(

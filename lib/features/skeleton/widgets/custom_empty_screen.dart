@@ -4,15 +4,16 @@ import 'package:my_finance/core/utils/app_text_styles.dart';
 
 class CustomEmptyScreen extends StatelessWidget {
   final String title;
+  final String iconPath;
 
-  const CustomEmptyScreen({Key? key, required this.title}) : super(key: key);
+  const CustomEmptyScreen({Key? key, required this.title,required this.iconPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset('assets/icons/empty_wallet.svg'),
+        SvgPicture.asset(iconPath),
         Text(
           title,
           style: AppTextStyles.style600.copyWith(fontSize: 24),

@@ -15,6 +15,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
       body: Center(
         child: CustomEmptyScreen(
           title: "Empty",
+          iconPath: "assets/icons/empty_wallet.svg",
         ),
       ),
     );

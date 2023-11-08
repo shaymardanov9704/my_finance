@@ -40,7 +40,10 @@ class _ExpensesPageState extends State<ExpensesPage> {
             final expenses = box.values.toList().cast<Expense>();
             if (expenses.isEmpty) {
               return const Center(
-                child: CustomEmptyScreen(title: kNotExpenses),
+                child: CustomEmptyScreen(
+                  title: kNotExpenses,
+                  iconPath: "assets/icons/empty_wallet.svg",
+                ),
               );
             } else if (expenses.isNotEmpty) {
               return Column(

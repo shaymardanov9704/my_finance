@@ -14,7 +14,7 @@ class CustomSwitchThemeWidget extends StatelessWidget {
       inactiveThumbColor: Colors.transparent,
       inactiveTrackColor: Colors.transparent,
       activeThumbImage: const AssetImage("assets/icons/dark.png"),
-      inactiveThumbImage: const AssetImage("assets/icons/light.png"),
+      inactiveThumbImage: const AssetImage("assets/icons/light_mode.png"),
       onChanged: (value) {
         if (value) {
           themeProvider.setTheme(1); // Set dark theme
