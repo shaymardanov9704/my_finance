@@ -48,7 +48,7 @@ class _DebtsPageState extends State<DebtsPage> {
               return Column(
                 children: [
                   const SizedBox(height: 24),
-                  TopWidget(amount: allDebts(debts)),
+                  const DebtsInfoWidget(),
                   const SizedBox(height: 24),
                   Expanded(
                     child: ListView.builder(

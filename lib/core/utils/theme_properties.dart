@@ -78,6 +78,11 @@ class ThemeProperties {
     labelLarge: AppTextStyles.style600.copyWith(color: AppColors.green),
   );
 
+  static final divider = DividerThemeData(
+    color: AppColors.darkBackground,
+    thickness: 0,
+  );
+
   ///Dark theme properties
   static final darkCard = CardTheme(
     color: AppColors.darCard,
@@ -101,7 +106,6 @@ class ThemeProperties {
 
   static final darkBottomAppBar = BottomAppBarTheme(
     elevation: 0.5,
-
     shadowColor: AppColors.background,
   );
 
@@ -154,5 +158,10 @@ class ThemeProperties {
 
   static final darkText = TextTheme(
     labelLarge: AppTextStyles.style600.copyWith(color: AppColors.green),
+  );
+
+  static final darkDivider = DividerThemeData(
+    color: AppColors.background,
+    thickness: 0,
   );
 }

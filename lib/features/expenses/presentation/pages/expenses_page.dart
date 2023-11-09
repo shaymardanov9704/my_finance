@@ -22,16 +22,6 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<ExpensesPage> {
-  String expensesOffThisMonth(List<Expense> expenses) {
-    int result = 0;
-    for (var element in expenses) {
-      if (element.createdDate.month == DateTime.now().month) {
-        result += element.amount;
-      }
-    }
-    return "$result ming so`m";
-  }
-
   @override
   Widget build(BuildContext context) => Scaffold(
         body: ValueListenableBuilder<Box<Expense>>(
@@ -49,7 +39,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
               return Column(
                 children: [
                   const SizedBox(height: 24),
-                  TopWidget(amount: expensesOffThisMonth(expenses)),
+                  ExpensesInfoWidget(),
                   const SizedBox(height: 24),
                   Expanded(
                     child: ListView.builder(

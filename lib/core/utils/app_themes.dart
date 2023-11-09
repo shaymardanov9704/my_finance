@@ -21,6 +21,7 @@ class AppThemes {
       bottomAppBarTheme: ThemeProperties.bottomAppBar,
       elevatedButtonTheme: ThemeProperties.elevatedButton,
       textButtonTheme: ThemeProperties.textButton,
+      dividerTheme: ThemeProperties.divider,
     );
   }
 
@@ -42,6 +43,7 @@ class AppThemes {
       elevatedButtonTheme: ThemeProperties.darkElevatedButton,
       textButtonTheme: ThemeProperties.darkTextButton,
       textTheme: ThemeProperties.text,
+      dividerTheme: ThemeProperties.darkDivider,
     );
   }
 }
