@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
@@ -8,10 +7,8 @@ import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/expense_widget.dart';
-import 'package:my_finance/features/expenses/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
-import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
 import 'package:provider/provider.dart';
 
 class ExpensesPage extends StatefulWidget {
@@ -38,9 +35,6 @@ class _ExpensesPageState extends State<ExpensesPage> {
             } else if (expenses.isNotEmpty) {
               return Column(
                 children: [
-                  const SizedBox(height: 24),
-                  ExpensesInfoWidget(),
-                  const SizedBox(height: 24),
                   Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 16),

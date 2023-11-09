@@ -6,12 +6,9 @@ import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
 import 'package:my_finance/features/debts/presentation/widgets/debt_widget.dart';
-import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
 import 'package:provider/provider.dart';
-
-import '../../../skeleton/widgets/custom_theme_switch_button.dart';
 
 class DebtsPage extends StatefulWidget {
   const DebtsPage({super.key});
@@ -47,9 +44,6 @@ class _DebtsPageState extends State<DebtsPage> {
             } else {
               return Column(
                 children: [
-                  const SizedBox(height: 24),
-                  const DebtsInfoWidget(),
-                  const SizedBox(height: 24),
                   Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
