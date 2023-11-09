@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
@@ -60,7 +61,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
               const Divider(),
               Center(
                 child: SfCircularChart(
-                  title: ChartTitle(text: 'Xarajatlar diagram'),
+                  title: ChartTitle(text: kExpensesDiagram),
                   legend: const Legend(
                     isVisible: true,
                     position: LegendPosition.bottom,

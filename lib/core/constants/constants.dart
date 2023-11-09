@@ -31,3 +31,4 @@ const String kExpensesOffThisMonth = "Ushbu oydagi xarajatlar";
 const String kDebtsOffAllTime = "Umumiy qarzlar miqdori";
 const String kIsReturn = "Qaytarildi";
 const String kReturnDate = "Qaytarilish Vaqti";
+const String kExpensesDiagram = "Xarajatlar diagrammasi";
