@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_finance/core/constants/constants.dart';
+import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
@@ -67,6 +68,16 @@ class _StatisticsPageState extends State<StatisticsPage> {
                     position: LegendPosition.bottom,
                     shouldAlwaysShowScrollbar: true,
                   ),
+                  palette: [
+                    AppColors.green,
+                    AppColors.yellow,
+                    AppColors.pink,
+                    AppColors.primary,
+                    AppColors.blue,
+                    AppColors.orange,
+                    AppColors.purple,
+                    AppColors.teal,
+                  ],
                   margin: EdgeInsets.zero,
                   series: <PieSeries<_PieData, String>>[
                     PieSeries<_PieData, String>(
