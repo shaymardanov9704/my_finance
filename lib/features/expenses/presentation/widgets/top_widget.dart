@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
@@ -65,7 +66,7 @@ class _ExpensesInfoWidgetState extends State<ExpensesInfoWidget> {
               ],
             ),
             child: Text(
-              '$kExpensesOffThisMonth \n${expensesOfThisMonth(expenses)}',
+              '${Words.expensesOffThisMonth.tr()} \n${expensesOfThisMonth(expenses)}',
               textAlign: TextAlign.center,
               style: AppTextStyles.style600.copyWith(fontSize: 20),
             ),

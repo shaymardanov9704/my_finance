@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
@@ -63,12 +64,12 @@ class _DebtsInfoWidgetState extends State<DebtsInfoWidget> {
             child: Column(
               children: [
                 Text(
-                  kDebtsOffAllTime,
+                  Words.debtsOffAllTime.tr(),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.style600.copyWith(fontSize: 20),
                 ),
                 Text(
-                  "${amount(debts)} $kThousandSum",
+                  "${amount(debts)} ${Words.som.tr()}",
                   style: AppTextStyles.style600.copyWith(
                     fontSize: 20,
                     color: amount(debts) >= 0 ? AppColors.green : AppColors.red,

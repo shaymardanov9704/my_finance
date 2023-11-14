@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/constants/enums.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
@@ -79,7 +80,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
     final isEditing = widget.expense != null;
     return AlertDialog(
       title: Text(
-        isEditing ? kEditExpense : kAddExpense,
+        isEditing ? Words.edit.tr() : Words.add.tr(),
         textAlign: TextAlign.center,
       ),
       scrollable: true,
@@ -92,13 +93,13 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: nameController,
-                title: kTitle,
+                title: Words.title.tr(),
                 validator: (name) =>
                     name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
                 controller: amountController,
-                title: kAmount,
+                title: Words.amount.tr(),
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
@@ -137,7 +138,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               ),
               CheckboxListTile(
                 value: refundable,
-                title: const Text(kRefundable),
+                title: Text(Words.returnDate.tr()),
                 onChanged: (_) {
                   setState(() => refundable = !refundable);
                 },
@@ -150,14 +151,14 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
       actions: <Widget>[
         TextButton(
           child: Text(
-            'Cancel',
+            Words.cancel.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
           child: Text(
-            isEditing ? 'Save' : 'Add',
+            isEditing ? Words.save.tr() : Words.add.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () async {

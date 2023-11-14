@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
@@ -26,9 +27,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
           builder: (context, box, _) {
             final expenses = box.values.toList().cast<Expense>();
             if (expenses.isEmpty) {
-              return const Center(
+              return  Center(
                 child: CustomEmptyScreen(
-                  title: kNotExpenses,
+                  title: Words.noExpensesYet.tr(),
                   iconPath: "assets/icons/empty_wallet.svg",
                 ),
               );

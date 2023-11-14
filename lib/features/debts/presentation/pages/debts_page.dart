@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
@@ -35,9 +36,9 @@ class _DebtsPageState extends State<DebtsPage> {
           builder: (context, box, _) {
             final debts = box.values.toList().cast<Debt>();
             if (debts.isEmpty) {
-              return const Center(
+              return  Center(
                 child: CustomEmptyScreen(
-                  title: kNotDebts,
+                  title: Words.noDebtsYet.tr(),
                   iconPath: "assets/icons/empty_debts.svg",
                 ),
               );

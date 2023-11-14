@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
@@ -26,15 +27,15 @@ class DebtWidget extends StatelessWidget {
           style: AppTextStyles.style700.copyWith(fontSize: 18),
         ),
         subtitle: Text(
-          "$kReturnDate: ${DateFormat(kDateFormat).format(debt.returnDate)}",
+          "${Words.returnDate.tr()}: ${DateFormat(kDateFormat).format(debt.returnDate)}",
           style: AppTextStyles.style500.copyWith(
-            color: DateTime.now().isBefore(debt.returnDate)||debt.isReturn
+            color: DateTime.now().isBefore(debt.returnDate) || debt.isReturn
                 ? AppColors.green
                 : AppColors.red,
           ),
         ),
         trailing: Text(
-          "${debt.amount} $kThousandSum",
+          "${debt.amount} ${Words.som.tr()}",
           style: AppTextStyles.style700.copyWith(
             color: debt.isReturn ? Colors.green : Colors.red,
             fontSize: 16,
@@ -45,10 +46,10 @@ class DebtWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: TextButton.icon(
-                  label: const Text(kEdit),
+                  label: Text(Words.edit.tr()),
                   style: TextButton.styleFrom(
-                    textStyle: AppTextStyles.style700.copyWith(color: Colors.white)
-                  ),
+                      textStyle:
+                          AppTextStyles.style700.copyWith(color: Colors.white)),
                   icon: const Icon(Icons.edit),
                   onPressed: () => showDialog(
                     context: context,
@@ -58,7 +59,7 @@ class DebtWidget extends StatelessWidget {
               ),
               Expanded(
                 child: TextButton.icon(
-                  label: const Text(kDelete),
+                  label: Text(Words.delete.tr()),
                   icon: const Icon(Icons.delete),
                   onPressed: () => deleteDebt(debt),
                 ),

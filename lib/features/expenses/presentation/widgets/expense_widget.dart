@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
@@ -64,7 +65,7 @@ class ExpenseWidget extends StatelessWidget {
               Expanded(
                 child: TextButton.icon(
                   label: Text(
-                    kEdit,
+                    Words.edit.tr(),
                     style:
                         AppTextStyles.style600.copyWith(color: AppColors.green),
                   ),
@@ -78,7 +79,7 @@ class ExpenseWidget extends StatelessWidget {
               Expanded(
                 child: TextButton.icon(
                   label: Text(
-                    kDelete,
+                    Words.delete.tr(),
                     style:
                         AppTextStyles.style600.copyWith(color: AppColors.green),
                   ),

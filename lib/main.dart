@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_finance/app.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_themes.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
@@ -10,7 +12,7 @@ import 'package:my_finance/features/skeleton/skeleton.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
 
   Hive.registerAdapter(ExpenseAdapter());
@@ -22,7 +24,7 @@ Future main() async {
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => ThemeProvider())],
-      child: const MyApp(),
+      child: const App(child: MyApp()),
     ),
   );
 }
@@ -35,6 +37,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: kAppName,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: context.watch<ThemeProvider>().currentTheme,
       darkTheme: AppThemes.dark(),
       home: const Skeleton(),

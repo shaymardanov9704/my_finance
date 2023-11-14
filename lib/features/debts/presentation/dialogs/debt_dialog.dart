@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
@@ -99,12 +100,12 @@ class _DebtDialogState extends State<DebtDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: borrowerNameController,
-                title: kBorrowerName,
+                title: Words.borrowerName.tr(),
                 validator: (name) =>
                     name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
-                title: kAmount,
+                title: Words.amount.tr(),
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
@@ -134,7 +135,7 @@ class _DebtDialogState extends State<DebtDialog> {
                 },
               ),
               CheckboxListTile(
-                title: const Text(kIsReturn),
+                title: Text(Words.isReturn.tr()),
                 value: isReturns,
                 onChanged: (value) {
                   setState(() {});
@@ -148,14 +149,14 @@ class _DebtDialogState extends State<DebtDialog> {
       actions: <Widget>[
         TextButton(
           child: Text(
-            kCancel,
+            Words.cancel.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
           child: Text(
-            isEditing ? kSave : kAdd,
+            isEditing ? Words.edit.tr() : Words.add.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () async {

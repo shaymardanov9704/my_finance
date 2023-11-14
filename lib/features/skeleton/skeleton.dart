@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
@@ -29,11 +31,11 @@ class _SkeletonState extends State<Skeleton> {
 
   String appBarTitle(int index) {
     if (index == 0) {
-      return kExpensesPage;
+      return Words.expensesPage.tr();
     } else if (index == 1) {
-      return kDebtsPage;
+      return Words.debtsPage.tr();
     } else {
-      return kStatisticsPage;
+      return Words.statisticsPage.tr();
     }
   }
 
@@ -49,6 +51,18 @@ class _SkeletonState extends State<Skeleton> {
           CustomSwitchThemeWidget(),
         ],
       ),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  context.setLocale(Locale("ru"));
+                },
+                child: Text("Language"))
+          ],
+        ),
+      ),
       body: PersistentTabView(
         context,
         controller: _controller,
@@ -59,7 +73,7 @@ class _SkeletonState extends State<Skeleton> {
               'assets/icons/wallet.svg',
               color: color,
             ),
-            title: kExpenses.toCamelCase(),
+            title: Words.expenses.tr().toCamelCase(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),
@@ -68,7 +82,7 @@ class _SkeletonState extends State<Skeleton> {
               'assets/icons/card_transfer.svg',
               color: color,
             ),
-            title: kDebts.toCamelCase(),
+            title: Words.debts.tr().toCamelCase(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),
@@ -78,7 +92,7 @@ class _SkeletonState extends State<Skeleton> {
               height: 22,
               color: color,
             ),
-            title: "Statistics",
+            title: Words.statisticsPage.tr(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),
