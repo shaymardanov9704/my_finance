@@ -1,4 +1,5 @@
 {
+  "aboutApp": "Dastur haqida",
   "add": "Qo`shish",
   "addDebt": "Qo`shish",
   "addExpense": "Qo`shish",
@@ -6,6 +7,9 @@
   "appName": "My Economic",
   "borrowerName": "Oluvchi Ismi",
   "cancel": "Chiqish",
+  "changeLan": "Тилни ўзгартириш",
+  "close": "Yopish",
+  "darkMode": "Tungi rejim",
   "debts": "Qarzlar",
   "debtsOffAllTime": "Umumiy qarzlar miqdori",
   "debtsPage": "Qarzlar",
@@ -13,6 +17,8 @@
   "edit": "O`zgartirish",
   "editDebt": "O`zgartirish",
   "editExpense": "O`zgartirish",
+  "emptyStatistics": "Statistik ma`lumotlar topilmadi",
+  "english": "English",
   "enterName": "Ismni kiriting",
   "expenses": "Xarajatlar",
   "expensesDiagram": "Xarajatlar diagrammasi",
@@ -24,8 +30,12 @@
   "numberError": "To`g`ri raqam kiriting",
   "refundable": "Qaytariluvchi",
   "returnDate": "Qaytarilish Vaqti",
+  "russian": "Русский",
   "save": "Saqlash",
+  "share": "Ulashish",
   "som": "so`m",
   "statisticsPage": "Statistika",
-  "title": "Nomi"
+  "title": "Nomi",
+  "uzbek": "O`zbek",
+  "uzbekCyr": "Ўзбек"
 }

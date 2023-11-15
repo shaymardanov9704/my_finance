@@ -39,21 +39,21 @@ class _StatisticsPageState extends State<StatisticsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: StatisticRepository.getExpenses().listenable(),
-      builder: (context, box, _) {
-        final expenses = box.values.toList();
+    return Scaffold(
+      body: ValueListenableBuilder(
+        valueListenable: StatisticRepository.getExpenses().listenable(),
+        builder: (context, box, _) {
+          final expenses = box.values.toList();
 
-        if (expenses.isEmpty) {
-          return const Center(
-            child: CustomEmptyScreen(
-              title: "Empty",
-              iconPath: "assets/icons/empty_wallet.svg",
-            ),
-          );
-        }
-        return Scaffold(
-          body: ListView(
+          if (expenses.isEmpty) {
+            return  Center(
+              child: CustomEmptyScreen(
+                title: Words.emptyStatistics.tr(),
+                iconPath: "assets/icons/empty_wallet.svg",
+              ),
+            );
+          }
+          return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: <Widget>[
               const SizedBox(height: 24),
@@ -100,9 +100,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
               ),
               const Divider()
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

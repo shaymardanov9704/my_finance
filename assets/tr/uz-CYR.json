@@ -1,4 +1,5 @@
 {
+  "aboutApp": "Дастур ҳақида",
   "add": "Қўшиш",
   "addDebt": "Қўшиш",
   "addExpense": "Қўшиш",
@@ -6,6 +7,9 @@
   "appName": "My Economic",
   "borrowerName": "Олувчи Исми",
   "cancel": "Чиқиш",
+  "changeLan": "Тилни ўзгартириш",
+  "close": "Ёпиш",
+  "darkMode": "Тунги режим",
   "debts": "Қарзлар",
   "debtsOffAllTime": "Умумий қарзлар миқдори",
   "debtsPage": "Қарзлар",
@@ -13,6 +17,8 @@
   "edit": "Ўзгартириш",
   "editDebt": "Ўзгартириш",
   "editExpense": "Ўзгартириш",
+  "emptyStatistics": "Статистик маълумотлар топилмади",
+  "english": "English",
   "enterName": "Исмни киритинг",
   "expenses": "Харажатлар",
   "expensesDiagram": "Харажатлар диаграммаси",
@@ -24,8 +30,12 @@
   "numberError": "Тўғри рақам киритинг",
   "refundable": "Қайтарилувчи",
   "returnDate": "Қайтарилиш Вақти",
+  "russian": "Русский",
   "save": "Сақлаш",
+  "share": "Улашиш",
   "som": "сўм",
   "statisticsPage": "Статистика",
-  "title": "Номи"
+  "title": "Номи",
+  "uzbek": "O`zbek",
+  "uzbekCyr": "Ўзбек"
 }

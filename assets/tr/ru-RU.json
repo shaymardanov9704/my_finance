@@ -1,4 +1,5 @@
 {
+  "aboutApp": "О приложении",
   "add": "Добавить",
   "addDebt": "Добавлять",
   "addExpense": "Добавлять",
@@ -6,6 +7,9 @@
   "appName": "My Economic",
   "borrowerName": "Имя заемщика",
   "cancel": "Отмена",
+  "changeLan": "Изменить язык",
+  "close": "Закрыть",
+  "darkMode": "Ночной режим",
   "debts": "Долги",
   "debtsOffAllTime": "Сумма общей задолженности",
   "debtsPage": "Долги",
@@ -13,6 +17,8 @@
   "edit": "Редактировать",
   "editDebt": "Редактировать",
   "editExpense": "Редактировать",
+  "emptyStatistics": "Статистические данные не найдены",
+  "english": "English",
   "enterName": "Введите имя",
   "expenses": "Затраты",
   "expensesDiagram": "График расходов ",
@@ -24,8 +30,12 @@
   "numberError": "Введите действительный номер",
   "refundable": "Возвратный",
   "returnDate": "Время возврата",
+  "russian": "Русский",
   "save": "Сохранить",
+  "share": "Поделиться",
   "som": "сум",
   "statisticsPage": "Статистика",
-  "title": "Заголовок"
+  "title": "Заголовок",
+  "uzbek": "O`zbek",
+  "uzbekCyr": "Ўзбек"
 }

@@ -1,15 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_finance/core/common/words.dart';
-import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
-import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
+import 'package:my_finance/features/skeleton/widgets/custom_drawer.dart';
 import 'package:my_finance/features/statistics/presentation/pages/statistics_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
@@ -47,22 +45,8 @@ class _SkeletonState extends State<Skeleton> {
     return Scaffold(
       appBar: AppBar(
         title: Text(appBarTitle(_controller.index)),
-        actions: const [
-          CustomSwitchThemeWidget(),
-        ],
       ),
-      drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  context.setLocale(Locale("ru"));
-                },
-                child: Text("Language"))
-          ],
-        ),
-      ),
+      drawer: const CustomDrawer(),
       body: PersistentTabView(
         context,
         controller: _controller,

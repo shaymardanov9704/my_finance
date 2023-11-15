@@ -1,4 +1,5 @@
 {
+  "aboutApp": "About App",
   "add": "Add",
   "addDebt": "Add Debt",
   "addExpense": "Add Expense",
@@ -6,6 +7,9 @@
   "appName": "My Economic",
   "borrowerName": "Borrower Name",
   "cancel": "Cancel",
+  "changeLan": "Change language",
+  "close": "Close",
+  "darkMode": "Dark mode",
   "debts": "Debts",
   "debtsOffAllTime": "All Debts",
   "debtsPage": "Debts Page",
@@ -13,6 +17,8 @@
   "edit": "Edit",
   "editDebt": "Edit Debt",
   "editExpense": "Edit Expense",
+  "emptyStatistics": "Statistics not found!",
+  "english": "English",
   "enterName": "Enter a name",
   "expenses": "Expenses",
   "expensesDiagram": "Expenses diagram",
@@ -24,8 +30,12 @@
   "numberError": "Enter a valid number",
   "refundable": "Refundable",
   "returnDate": "Return date",
+  "russian": "Русский",
   "save": "Save",
+  "share": "Share",
   "som": "so`m",
   "statisticsPage": "Statistics Page",
-  "title": "Title"
+  "title": "Title",
+  "uzbek": "O`zbek",
+  "uzbekCyr": "Ўзбек"
 }
