@@ -37,7 +37,9 @@ class CustomDrawer extends StatelessWidget {
             title: LocaleKeys.changeLan.tr(),
             onTap: () {
               showDialog(
-                  context: context, builder: (_) => const LanguageDialog());
+                context: context,
+                builder: (_) => const LanguageDialog(),
+              );
             },
             icon: const Padding(
               padding: EdgeInsets.all(15),
@@ -46,6 +48,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           _DrawerItem(
             title: LocaleKeys.close.tr(),
+            onTap: () => Navigator.pop(context),
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.close),

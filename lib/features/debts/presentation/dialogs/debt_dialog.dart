@@ -9,7 +9,6 @@ import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
 import 'package:my_finance/core/generated/locale_keys.g.dart';
 
-
 class DebtDialog extends StatefulWidget {
   final Debt? debt;
 
@@ -92,7 +91,7 @@ class _DebtDialogState extends State<DebtDialog> {
     final isEditing = widget.debt != null;
 
     return AlertDialog(
-      title: Text(isEditing ? kEditDebt : kAddDebt),
+      title: Text(isEditing ? LocaleKeys.save.tr() : LocaleKeys.addDebt.tr()),
       content: Form(
         key: formKey,
         child: SingleChildScrollView(
