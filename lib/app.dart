@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finance/core/generated/codegen_loader.g.dart';
 
 class App extends StatelessWidget {
   final Widget child;
@@ -23,7 +24,7 @@ class App extends StatelessWidget {
       path: 'assets/tr',
       fallbackLocale: const Locale("uz", "UZ"),
       startLocale: const Locale("uz", "UZ"),
-      useOnlyLangCode: false,
+      assetLoader: const CodegenLoader(),
       saveLocale: true,
       child: child,
     );

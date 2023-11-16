@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/presentation/pages/debts_page.dart';
@@ -9,6 +9,7 @@ import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/expenses/presentation/pages/expenses_page.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_drawer.dart';
 import 'package:my_finance/features/statistics/presentation/pages/statistics_page.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -29,11 +30,11 @@ class _SkeletonState extends State<Skeleton> {
 
   String appBarTitle(int index) {
     if (index == 0) {
-      return Words.expensesPage.tr();
+      return LocaleKeys.expensesPage.tr();
     } else if (index == 1) {
-      return Words.debtsPage.tr();
+      return LocaleKeys.debtsPage.tr();
     } else {
-      return Words.statisticsPage.tr();
+      return LocaleKeys.statisticsPage.tr();
     }
   }
 
@@ -57,7 +58,7 @@ class _SkeletonState extends State<Skeleton> {
               'assets/icons/wallet.svg',
               color: color,
             ),
-            title: Words.expenses.tr().toCamelCase(),
+            title: LocaleKeys.expenses.tr().toCamelCase(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),
@@ -66,7 +67,7 @@ class _SkeletonState extends State<Skeleton> {
               'assets/icons/card_transfer.svg',
               color: color,
             ),
-            title: Words.debts.tr().toCamelCase(),
+            title: LocaleKeys.debts.tr().toCamelCase(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),
@@ -76,7 +77,7 @@ class _SkeletonState extends State<Skeleton> {
               height: 22,
               color: color,
             ),
-            title: Words.statisticsPage.tr(),
+            title: LocaleKeys.statisticsPage.tr(),
             activeColorPrimary: color,
             inactiveColorPrimary: color,
           ),

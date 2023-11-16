@@ -1,8 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_finance/core/common/words.dart';
-import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
@@ -10,6 +9,7 @@ import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog
 import 'package:my_finance/features/expenses/presentation/widgets/expense_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 class ExpensesPage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             if (expenses.isEmpty) {
               return  Center(
                 child: CustomEmptyScreen(
-                  title: Words.noExpensesYet.tr(),
+                  title: LocaleKeys.noExpensesYet.tr(),
                   iconPath: "assets/icons/empty_wallet.svg",
                 ),
               );

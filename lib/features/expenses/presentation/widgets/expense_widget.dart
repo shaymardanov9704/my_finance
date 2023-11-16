@@ -1,7 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
@@ -10,6 +9,7 @@ import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/expenses/presentation/dialogs/expense_dialog.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseWidget extends StatelessWidget {
@@ -65,7 +65,7 @@ class ExpenseWidget extends StatelessWidget {
               Expanded(
                 child: TextButton.icon(
                   label: Text(
-                    Words.edit.tr(),
+                    LocaleKeys.edit.tr(),
                     style:
                         AppTextStyles.style600.copyWith(color: AppColors.green),
                   ),
@@ -79,7 +79,7 @@ class ExpenseWidget extends StatelessWidget {
               Expanded(
                 child: TextButton.icon(
                   label: Text(
-                    Words.delete.tr(),
+                    LocaleKeys.delete.tr(),
                     style:
                         AppTextStyles.style600.copyWith(color: AppColors.green),
                   ),

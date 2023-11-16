@@ -1,11 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 
 class DebtWidget extends StatelessWidget {
   final Debt debt;
@@ -27,7 +27,7 @@ class DebtWidget extends StatelessWidget {
           style: AppTextStyles.style700.copyWith(fontSize: 18),
         ),
         subtitle: Text(
-          "${Words.returnDate.tr()}: ${DateFormat(kDateFormat).format(debt.returnDate)}",
+          "${LocaleKeys.returnDate.tr()}: ${DateFormat(kDateFormat).format(debt.returnDate)}",
           style: AppTextStyles.style500.copyWith(
             color: DateTime.now().isBefore(debt.returnDate) || debt.isReturn
                 ? AppColors.green
@@ -35,7 +35,7 @@ class DebtWidget extends StatelessWidget {
           ),
         ),
         trailing: Text(
-          "${debt.amount} ${Words.som.tr()}",
+          "${debt.amount} ${LocaleKeys.som.tr()}",
           style: AppTextStyles.style700.copyWith(
             color: debt.isReturn ? Colors.green : Colors.red,
             fontSize: 16,
@@ -46,7 +46,7 @@ class DebtWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: TextButton.icon(
-                  label: Text(Words.edit.tr()),
+                  label: Text(LocaleKeys.edit.tr()),
                   style: TextButton.styleFrom(
                       textStyle:
                           AppTextStyles.style700.copyWith(color: Colors.white)),
@@ -59,7 +59,7 @@ class DebtWidget extends StatelessWidget {
               ),
               Expanded(
                 child: TextButton.icon(
-                  label: Text(Words.delete.tr()),
+                  label: Text(LocaleKeys.delete.tr()),
                   icon: const Icon(Icons.delete),
                   onPressed: () => deleteDebt(debt),
                 ),

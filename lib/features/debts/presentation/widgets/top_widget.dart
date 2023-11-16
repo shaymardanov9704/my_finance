@@ -1,12 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_finance/core/common/words.dart';
-import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 class DebtsInfoWidget extends StatefulWidget {
@@ -64,12 +64,12 @@ class _DebtsInfoWidgetState extends State<DebtsInfoWidget> {
             child: Column(
               children: [
                 Text(
-                  Words.debtsOffAllTime.tr(),
+                  LocaleKeys.debtsOffAllTime.tr(),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.style600.copyWith(fontSize: 20),
                 ),
                 Text(
-                  "${amount(debts)} ${Words.som.tr()}",
+                  "${amount(debts)} ${LocaleKeys.som.tr()}",
                   style: AppTextStyles.style600.copyWith(
                     fontSize: 20,
                     color: amount(debts) >= 0 ? AppColors.green : AppColors.red,

@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/constants/enums.dart';
 import 'package:my_finance/core/extentions/string_extension.dart';
@@ -9,6 +9,7 @@ import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/data/repository/expenses_box.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseDialog extends StatefulWidget {
@@ -80,7 +81,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
     final isEditing = widget.expense != null;
     return AlertDialog(
       title: Text(
-        isEditing ? Words.edit.tr() : Words.add.tr(),
+        isEditing ? LocaleKeys.edit.tr() : LocaleKeys.add.tr(),
         textAlign: TextAlign.center,
       ),
       scrollable: true,
@@ -93,13 +94,13 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: nameController,
-                title: Words.title.tr(),
+                title: LocaleKeys.title.tr(),
                 validator: (name) =>
                     name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
                 controller: amountController,
-                title: Words.amount.tr(),
+                title: LocaleKeys.amount.tr(),
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
@@ -138,7 +139,7 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
               ),
               CheckboxListTile(
                 value: refundable,
-                title: Text(Words.returnDate.tr()),
+                title: Text(LocaleKeys.returnDate.tr()),
                 onChanged: (_) {
                   setState(() => refundable = !refundable);
                 },
@@ -151,14 +152,14 @@ class _ExpenseDialogState extends State<ExpenseDialog> {
       actions: <Widget>[
         TextButton(
           child: Text(
-            Words.cancel.tr(),
+            LocaleKeys.cancel.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
           child: Text(
-            isEditing ? Words.save.tr() : Words.add.tr(),
+            isEditing ? LocaleKeys.save.tr() : LocaleKeys.add.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () async {

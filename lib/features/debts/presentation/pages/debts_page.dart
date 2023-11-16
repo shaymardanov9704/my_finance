@@ -1,7 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_finance/core/common/words.dart';
-import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
@@ -9,6 +8,7 @@ import 'package:my_finance/features/debts/presentation/dialogs/debt_dialog.dart'
 import 'package:my_finance/features/debts/presentation/widgets/debt_widget.dart';
 import 'package:my_finance/features/skeleton/provider/theme_provider.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:provider/provider.dart';
 
 class DebtsPage extends StatefulWidget {
@@ -38,7 +38,7 @@ class _DebtsPageState extends State<DebtsPage> {
             if (debts.isEmpty) {
               return  Center(
                 child: CustomEmptyScreen(
-                  title: Words.noDebtsYet.tr(),
+                  title: LocaleKeys.noDebtsYet.tr(),
                   iconPath: "assets/icons/empty_debts.svg",
                 ),
               );

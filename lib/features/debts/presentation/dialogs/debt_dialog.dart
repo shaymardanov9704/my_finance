@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
+import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/debts/data/models/debt.dart';
 import 'package:my_finance/features/debts/data/repository/debts_box.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_text_field.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 
-import '../../../../core/utils/app_text_styles.dart';
 
 class DebtDialog extends StatefulWidget {
   final Debt? debt;
@@ -100,12 +101,12 @@ class _DebtDialogState extends State<DebtDialog> {
             children: <Widget>[
               CustomTextField(
                 controller: borrowerNameController,
-                title: Words.borrowerName.tr(),
+                title: LocaleKeys.borrowerName.tr(),
                 validator: (name) =>
                     name != null && name.isEmpty ? kEnterName : null,
               ),
               CustomTextField(
-                title: Words.amount.tr(),
+                title: LocaleKeys.amount.tr(),
                 keyboardType: TextInputType.number,
                 validator: (amount) =>
                     amount != null && double.tryParse(amount) == null
@@ -135,7 +136,7 @@ class _DebtDialogState extends State<DebtDialog> {
                 },
               ),
               CheckboxListTile(
-                title: Text(Words.isReturn.tr()),
+                title: Text(LocaleKeys.isReturn.tr()),
                 value: isReturns,
                 onChanged: (value) {
                   setState(() {});
@@ -149,14 +150,14 @@ class _DebtDialogState extends State<DebtDialog> {
       actions: <Widget>[
         TextButton(
           child: Text(
-            Words.cancel.tr(),
+            LocaleKeys.cancel.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
           child: Text(
-            isEditing ? Words.edit.tr() : Words.add.tr(),
+            isEditing ? LocaleKeys.edit.tr() : LocaleKeys.add.tr(),
             style: AppTextStyles.style600.copyWith(color: AppColors.green),
           ),
           onPressed: () async {

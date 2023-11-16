@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/skeleton/dialogs/language_dialog.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -15,25 +16,25 @@ class CustomDrawer extends StatelessWidget {
         children: [
           const SizedBox(height: 60),
           _DrawerItem(
-            title: Words.darkMode.tr(),
+            title: LocaleKeys.darkMode.tr(),
             icon: const CustomSwitchThemeWidget(),
           ),
           _DrawerItem(
-            title: Words.share.tr(),
+            title: LocaleKeys.share.tr(),
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.share),
             ),
           ),
           _DrawerItem(
-            title: Words.aboutApp.tr(),
+            title: LocaleKeys.aboutApp.tr(),
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.info),
             ),
           ),
           _DrawerItem(
-            title: Words.changeLan.tr(),
+            title: LocaleKeys.changeLan.tr(),
             onTap: () {
               showDialog(
                   context: context, builder: (_) => const LanguageDialog());
@@ -44,7 +45,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           _DrawerItem(
-            title: Words.close.tr(),
+            title: LocaleKeys.close.tr(),
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.close),

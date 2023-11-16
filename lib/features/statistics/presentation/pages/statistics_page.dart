@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_finance/core/common/words.dart';
 import 'package:my_finance/core/constants/constants.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
@@ -9,6 +9,7 @@ import 'package:my_finance/features/expenses/data/models/expense.dart';
 import 'package:my_finance/features/expenses/presentation/widgets/top_widget.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_empty_screen.dart';
 import 'package:my_finance/features/statistics/data/repository/statistic_repository.dart';
+import 'package:my_finance/core/generated/locale_keys.g.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatisticsPage extends StatefulWidget {
@@ -46,9 +47,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
           final expenses = box.values.toList();
 
           if (expenses.isEmpty) {
-            return  Center(
+            return Center(
               child: CustomEmptyScreen(
-                title: Words.emptyStatistics.tr(),
+                title: LocaleKeys.emptyStatistics.tr(),
                 iconPath: "assets/icons/empty_wallet.svg",
               ),
             );
@@ -90,7 +91,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                         isVisible: true,
                         labelPosition: ChartDataLabelPosition.outside,
                         builder: (data, point, series, int p, int s) => Text(
-                          "${(data as _PieData).amount} ${Words.som.tr()}",
+                          "${(data as _PieData).amount} ${LocaleKeys.som.tr()}",
                           style: AppTextStyles.style600.copyWith(fontSize: 10),
                         ),
                       ),
