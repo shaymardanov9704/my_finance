@@ -22,35 +22,35 @@ class CustomDrawer extends StatelessWidget {
             title: LocaleKeys.darkMode.tr(),
             icon: const CustomSwitchThemeWidget(),
           ),
-          _DrawerItem(
-            title: LocaleKeys.share.tr(),
-            onTap: () {
-              //TODO: this (Play Store URL)
-              Share.share(
-                'Check out this awesome app!',
-                subject: "",
-              );
-            },
-            icon: const Padding(
-              padding: EdgeInsets.all(15),
-              child: Icon(Icons.share),
-            ),
-          ),
-          _DrawerItem(
-            title: LocaleKeys.aboutApp.tr(),
-            onTap: () {
-              Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (_) => const AboutAppPage(),
-                ),
-              );
-            },
-            icon: const Padding(
-              padding: EdgeInsets.all(15),
-              child: Icon(Icons.info),
-            ),
-          ),
+          // _DrawerItem(
+          //   title: LocaleKeys.share.tr(),
+          //   onTap: () {
+          //     //TODO: this (Play Store URL)
+          //     Share.share(
+          //       'Check out this awesome app!',
+          //       subject: "",
+          //     );
+          //   },
+          //   icon: const Padding(
+          //     padding: EdgeInsets.all(15),
+          //     child: Icon(Icons.share),
+          //   ),
+          // ),
+          // _DrawerItem(
+          //   title: LocaleKeys.aboutApp.tr(),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       CupertinoPageRoute(
+          //         builder: (_) => const AboutAppPage(),
+          //       ),
+          //     );
+          //   },
+          //   icon: const Padding(
+          //     padding: EdgeInsets.all(15),
+          //     child: Icon(Icons.info),
+          //   ),
+          // ),
           _DrawerItem(
             title: LocaleKeys.changeLan.tr(),
             onTap: () {
