@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
+import 'package:my_finance/features/other/about_app_page.dart';
 import 'package:my_finance/features/skeleton/dialogs/language_dialog.dart';
 import 'package:my_finance/features/skeleton/widgets/custom_theme_switch_button.dart';
 import 'package:my_finance/core/generated/locale_keys.g.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -21,6 +24,13 @@ class CustomDrawer extends StatelessWidget {
           ),
           _DrawerItem(
             title: LocaleKeys.share.tr(),
+            onTap: () {
+              //TODO: this (Play Store URL)
+              Share.share(
+                'Check out this awesome app!',
+                subject: "",
+              );
+            },
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.share),
@@ -28,6 +38,14 @@ class CustomDrawer extends StatelessWidget {
           ),
           _DrawerItem(
             title: LocaleKeys.aboutApp.tr(),
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (_) => const AboutAppPage(),
+                ),
+              );
+            },
             icon: const Padding(
               padding: EdgeInsets.all(15),
               child: Icon(Icons.info),

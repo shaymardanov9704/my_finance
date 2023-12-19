@@ -16,6 +16,7 @@ class CustomEmptyScreen extends StatelessWidget {
         SvgPicture.asset(iconPath),
         Text(
           title,
+          textAlign: TextAlign.center,
           style: AppTextStyles.style600.copyWith(fontSize: 24),
         ),
       ],
