@@ -1,4 +1,4 @@
-const String kAppName = "My Economic";
+const String kAppName = "My Wallet";
 const String kDebts = "debts";
 const String kExpenses = "Expenses";
 const String kThemeBox = "themeBox";
