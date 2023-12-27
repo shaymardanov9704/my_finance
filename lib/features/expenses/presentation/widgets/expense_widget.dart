@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_finance/core/constants/constants.dart';
-import 'package:my_finance/core/extentions/string_extension.dart';
 import 'package:my_finance/core/utils/app_colors.dart';
 import 'package:my_finance/core/utils/app_text_styles.dart';
 import 'package:my_finance/features/expenses/data/models/expense.dart';
@@ -44,7 +43,7 @@ class ExpenseWidget extends StatelessWidget {
       child: ExpansionTile(
         tilePadding: const EdgeInsets.symmetric(horizontal: 12),
         title: Text(
-          expense.name.toCamelCase(),
+          expense.name,
           maxLines: 2,
           style: AppTextStyles.style600.copyWith(fontSize: 18),
         ),
@@ -52,7 +51,7 @@ class ExpenseWidget extends StatelessWidget {
           DateFormat(kDateFormatWithHour).format(expense.createdDate),
         ),
         trailing: Text(
-          "${expense.amount} $kThousandSum",
+          "${expense.amount} ${LocaleKeys.som.tr()}",
           style: AppTextStyles.style700.copyWith(
             color: expense.refundable ? Colors.green : Colors.red,
             fontSize: 16,

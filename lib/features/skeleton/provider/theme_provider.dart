@@ -8,12 +8,14 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData _currentTheme = AppThemes.light();
 
   ThemeProvider() {
-    _initHive();
+    _initHive().then((_) {
+      notifyListeners();
+    });
   }
 
   Future<void> _initHive() async {
     _themeBox = await Hive.openBox(kThemeBox);
-    final themeIndex = _themeBox.get(kCurrentTheme, defaultValue: 0);
+    final themeIndex = _themeBox.get(kCurrentTheme);
     _currentTheme = _getThemeFromIndex(themeIndex);
   }
 
